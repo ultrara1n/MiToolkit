@@ -339,7 +339,7 @@ Public Class Form1
     Private Sub cmdCheckJava_Click(sender As Object, e As EventArgs) Handles cmdCheckJava.Click
         'Java Installation prüfen
         Dim JavaProc As New Process()
-        Dim JavaProcInfo As New ProcessStartInfo("javas", "-version")
+        Dim JavaProcInfo As New ProcessStartInfo("java", "-version")
 
         With JavaProcInfo
             .UseShellExecute = False
@@ -358,14 +358,20 @@ Public Class Form1
             End Using
 
             Dim info() As String = Split(sOutput, vbCrLf)
-
+            Dim found As Boolean
             For Each output As String In info
                 If (output.Contains("Runtime Environment")) Then
-                    MsgBox(output)
+                    MsgBox("Java gefunden: " & output)
+                    found = True
                 End If
             Next
+
+            If found <> True Then
+                MsgBox("Java scheint installiert zu sein, jedoch keine Runtime Environment. Bitte neu installieren.", MsgBoxStyle.Critical)
+            End If
+
         Catch Exc As System.ComponentModel.Win32Exception
-            MsgBox("Java nicht gefunden.")
+            MsgBox("Konnte kein Java finden. Sicher das es installiert ist?", MsgBoxStyle.Critical)
         End Try
     End Sub
 End Class

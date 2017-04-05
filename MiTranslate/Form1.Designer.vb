@@ -327,9 +327,9 @@ Partial Class Form1
         '
         Me.cmdCheckJava.Location = New System.Drawing.Point(178, 85)
         Me.cmdCheckJava.Name = "cmdCheckJava"
-        Me.cmdCheckJava.Size = New System.Drawing.Size(75, 23)
+        Me.cmdCheckJava.Size = New System.Drawing.Size(124, 23)
         Me.cmdCheckJava.TabIndex = 30
-        Me.cmdCheckJava.Text = "Java prüfen"
+        Me.cmdCheckJava.Text = "Java Installation prüfen"
         Me.cmdCheckJava.UseVisualStyleBackColor = True
         '
         'Form1
