@@ -24,8 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.cmdCheckConnection = New System.Windows.Forms.Button()
-        Me.lblDevice = New System.Windows.Forms.Label()
-        Me.txtDevice = New System.Windows.Forms.TextBox()
+        Me.txtDeviceModel = New System.Windows.Forms.TextBox()
         Me.lblIntroduction = New System.Windows.Forms.Label()
         Me.cmdGetVersions = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -54,6 +53,11 @@ Partial Class Form1
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.cmdCheckJava = New System.Windows.Forms.Button()
+        Me.lblDevice = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtDeviceAndroid = New System.Windows.Forms.TextBox()
+        Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -66,22 +70,13 @@ Partial Class Form1
         Me.cmdCheckConnection.Text = "Verbindung prüfen"
         Me.cmdCheckConnection.UseVisualStyleBackColor = True
         '
-        'lblDevice
+        'txtDeviceModel
         '
-        Me.lblDevice.AutoSize = True
-        Me.lblDevice.Location = New System.Drawing.Point(12, 124)
-        Me.lblDevice.Name = "lblDevice"
-        Me.lblDevice.Size = New System.Drawing.Size(102, 13)
-        Me.lblDevice.TabIndex = 1
-        Me.lblDevice.Text = "Verbundenes Gerät:"
-        '
-        'txtDevice
-        '
-        Me.txtDevice.Enabled = False
-        Me.txtDevice.Location = New System.Drawing.Point(120, 121)
-        Me.txtDevice.Name = "txtDevice"
-        Me.txtDevice.Size = New System.Drawing.Size(133, 20)
-        Me.txtDevice.TabIndex = 2
+        Me.txtDeviceModel.Enabled = False
+        Me.txtDeviceModel.Location = New System.Drawing.Point(75, 112)
+        Me.txtDeviceModel.Name = "txtDeviceModel"
+        Me.txtDeviceModel.Size = New System.Drawing.Size(133, 20)
+        Me.txtDeviceModel.TabIndex = 2
         '
         'lblIntroduction
         '
@@ -97,7 +92,7 @@ Partial Class Form1
         '
         'cmdGetVersions
         '
-        Me.cmdGetVersions.Location = New System.Drawing.Point(12, 154)
+        Me.cmdGetVersions.Location = New System.Drawing.Point(12, 195)
         Me.cmdGetVersions.Name = "cmdGetVersions"
         Me.cmdGetVersions.Size = New System.Drawing.Size(147, 23)
         Me.cmdGetVersions.TabIndex = 5
@@ -107,7 +102,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 198)
+        Me.Label1.Location = New System.Drawing.Point(9, 225)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 13)
         Me.Label1.TabIndex = 6
@@ -116,7 +111,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(162, 198)
+        Me.Label2.Location = New System.Drawing.Point(162, 225)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(105, 13)
         Me.Label2.TabIndex = 7
@@ -125,7 +120,7 @@ Partial Class Form1
         'txtMiHome
         '
         Me.txtMiHome.Enabled = False
-        Me.txtMiHome.Location = New System.Drawing.Point(12, 214)
+        Me.txtMiHome.Location = New System.Drawing.Point(12, 241)
         Me.txtMiHome.Name = "txtMiHome"
         Me.txtMiHome.Size = New System.Drawing.Size(123, 20)
         Me.txtMiHome.TabIndex = 8
@@ -133,14 +128,14 @@ Partial Class Form1
         'txtErweiterung
         '
         Me.txtErweiterung.Enabled = False
-        Me.txtErweiterung.Location = New System.Drawing.Point(165, 214)
+        Me.txtErweiterung.Location = New System.Drawing.Point(165, 241)
         Me.txtErweiterung.Name = "txtErweiterung"
         Me.txtErweiterung.Size = New System.Drawing.Size(123, 20)
         Me.txtErweiterung.TabIndex = 9
         '
         'pbHome
         '
-        Me.pbHome.Location = New System.Drawing.Point(12, 240)
+        Me.pbHome.Location = New System.Drawing.Point(12, 267)
         Me.pbHome.Name = "pbHome"
         Me.pbHome.Size = New System.Drawing.Size(123, 23)
         Me.pbHome.TabIndex = 10
@@ -148,7 +143,7 @@ Partial Class Form1
         '
         'pbErweiterung
         '
-        Me.pbErweiterung.Location = New System.Drawing.Point(165, 240)
+        Me.pbErweiterung.Location = New System.Drawing.Point(165, 267)
         Me.pbErweiterung.Name = "pbErweiterung"
         Me.pbErweiterung.Size = New System.Drawing.Size(123, 23)
         Me.pbErweiterung.TabIndex = 11
@@ -157,7 +152,7 @@ Partial Class Form1
         'lblHomeExists
         '
         Me.lblHomeExists.AutoSize = True
-        Me.lblHomeExists.Location = New System.Drawing.Point(9, 240)
+        Me.lblHomeExists.Location = New System.Drawing.Point(9, 267)
         Me.lblHomeExists.Name = "lblHomeExists"
         Me.lblHomeExists.Size = New System.Drawing.Size(119, 13)
         Me.lblHomeExists.TabIndex = 12
@@ -167,7 +162,7 @@ Partial Class Form1
         'lblErweiterungExists
         '
         Me.lblErweiterungExists.AutoSize = True
-        Me.lblErweiterungExists.Location = New System.Drawing.Point(162, 240)
+        Me.lblErweiterungExists.Location = New System.Drawing.Point(162, 267)
         Me.lblErweiterungExists.Name = "lblErweiterungExists"
         Me.lblErweiterungExists.Size = New System.Drawing.Size(119, 13)
         Me.lblErweiterungExists.TabIndex = 13
@@ -176,7 +171,7 @@ Partial Class Form1
         '
         'txtHomeVersion
         '
-        Me.txtHomeVersion.Location = New System.Drawing.Point(168, 154)
+        Me.txtHomeVersion.Location = New System.Drawing.Point(168, 195)
         Me.txtHomeVersion.Name = "txtHomeVersion"
         Me.txtHomeVersion.Size = New System.Drawing.Size(23, 20)
         Me.txtHomeVersion.TabIndex = 14
@@ -184,7 +179,7 @@ Partial Class Form1
         '
         'txtHomeMD5
         '
-        Me.txtHomeMD5.Location = New System.Drawing.Point(197, 154)
+        Me.txtHomeMD5.Location = New System.Drawing.Point(197, 195)
         Me.txtHomeMD5.Name = "txtHomeMD5"
         Me.txtHomeMD5.Size = New System.Drawing.Size(23, 20)
         Me.txtHomeMD5.TabIndex = 16
@@ -192,7 +187,7 @@ Partial Class Form1
         '
         'txtErweiterungMD5
         '
-        Me.txtErweiterungMD5.Location = New System.Drawing.Point(273, 154)
+        Me.txtErweiterungMD5.Location = New System.Drawing.Point(273, 195)
         Me.txtErweiterungMD5.Name = "txtErweiterungMD5"
         Me.txtErweiterungMD5.Size = New System.Drawing.Size(23, 20)
         Me.txtErweiterungMD5.TabIndex = 18
@@ -200,7 +195,7 @@ Partial Class Form1
         '
         'txtErweiterungVersion
         '
-        Me.txtErweiterungVersion.Location = New System.Drawing.Point(244, 154)
+        Me.txtErweiterungVersion.Location = New System.Drawing.Point(244, 195)
         Me.txtErweiterungVersion.Name = "txtErweiterungVersion"
         Me.txtErweiterungVersion.Size = New System.Drawing.Size(23, 20)
         Me.txtErweiterungVersion.TabIndex = 17
@@ -208,7 +203,7 @@ Partial Class Form1
         '
         'cmdInstallMiHome
         '
-        Me.cmdInstallMiHome.Location = New System.Drawing.Point(12, 274)
+        Me.cmdInstallMiHome.Location = New System.Drawing.Point(12, 301)
         Me.cmdInstallMiHome.Name = "cmdInstallMiHome"
         Me.cmdInstallMiHome.Size = New System.Drawing.Size(147, 23)
         Me.cmdInstallMiHome.TabIndex = 19
@@ -218,7 +213,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 311)
+        Me.Label3.Location = New System.Drawing.Point(12, 338)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(293, 39)
         Me.Label3.TabIndex = 20
@@ -227,7 +222,7 @@ Partial Class Form1
         '
         'cmdSicherung
         '
-        Me.cmdSicherung.Location = New System.Drawing.Point(12, 359)
+        Me.cmdSicherung.Location = New System.Drawing.Point(12, 386)
         Me.cmdSicherung.Name = "cmdSicherung"
         Me.cmdSicherung.Size = New System.Drawing.Size(131, 23)
         Me.cmdSicherung.TabIndex = 21
@@ -237,7 +232,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 395)
+        Me.Label4.Location = New System.Drawing.Point(12, 422)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(300, 39)
         Me.Label4.TabIndex = 22
@@ -246,7 +241,7 @@ Partial Class Form1
         '
         'cmdExtract
         '
-        Me.cmdExtract.Location = New System.Drawing.Point(57, 444)
+        Me.cmdExtract.Location = New System.Drawing.Point(57, 471)
         Me.cmdExtract.Name = "cmdExtract"
         Me.cmdExtract.Size = New System.Drawing.Size(205, 23)
         Me.cmdExtract.TabIndex = 23
@@ -255,7 +250,7 @@ Partial Class Form1
         '
         'cmdCopyTranslation
         '
-        Me.cmdCopyTranslation.Location = New System.Drawing.Point(57, 478)
+        Me.cmdCopyTranslation.Location = New System.Drawing.Point(57, 505)
         Me.cmdCopyTranslation.Name = "cmdCopyTranslation"
         Me.cmdCopyTranslation.Size = New System.Drawing.Size(205, 23)
         Me.cmdCopyTranslation.TabIndex = 24
@@ -264,7 +259,7 @@ Partial Class Form1
         '
         'cmdRestore
         '
-        Me.cmdRestore.Location = New System.Drawing.Point(57, 512)
+        Me.cmdRestore.Location = New System.Drawing.Point(57, 539)
         Me.cmdRestore.Name = "cmdRestore"
         Me.cmdRestore.Size = New System.Drawing.Size(205, 23)
         Me.cmdRestore.TabIndex = 25
@@ -273,7 +268,7 @@ Partial Class Form1
         '
         'cmdForceNext
         '
-        Me.cmdForceNext.Location = New System.Drawing.Point(165, 274)
+        Me.cmdForceNext.Location = New System.Drawing.Point(165, 301)
         Me.cmdForceNext.Name = "cmdForceNext"
         Me.cmdForceNext.Size = New System.Drawing.Size(123, 23)
         Me.cmdForceNext.TabIndex = 26
@@ -304,7 +299,7 @@ Partial Class Form1
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 544)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 570)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(308, 22)
         Me.StatusStrip1.SizingGrip = False
@@ -332,11 +327,58 @@ Partial Class Form1
         Me.cmdCheckJava.Text = "Java Installation prüfen"
         Me.cmdCheckJava.UseVisualStyleBackColor = True
         '
+        'lblDevice
+        '
+        Me.lblDevice.AutoSize = True
+        Me.lblDevice.Location = New System.Drawing.Point(12, 119)
+        Me.lblDevice.Name = "lblDevice"
+        Me.lblDevice.Size = New System.Drawing.Size(39, 13)
+        Me.lblDevice.TabIndex = 1
+        Me.lblDevice.Text = "Model:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 145)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(46, 13)
+        Me.Label5.TabIndex = 31
+        Me.Label5.Text = "Android:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(12, 171)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(56, 13)
+        Me.Label6.TabIndex = 32
+        Me.Label6.Text = "API Level:"
+        '
+        'txtDeviceAndroid
+        '
+        Me.txtDeviceAndroid.Enabled = False
+        Me.txtDeviceAndroid.Location = New System.Drawing.Point(75, 138)
+        Me.txtDeviceAndroid.Name = "txtDeviceAndroid"
+        Me.txtDeviceAndroid.Size = New System.Drawing.Size(133, 20)
+        Me.txtDeviceAndroid.TabIndex = 33
+        '
+        'txtDeviceAPI
+        '
+        Me.txtDeviceAPI.Enabled = False
+        Me.txtDeviceAPI.Location = New System.Drawing.Point(75, 168)
+        Me.txtDeviceAPI.Name = "txtDeviceAPI"
+        Me.txtDeviceAPI.Size = New System.Drawing.Size(133, 20)
+        Me.txtDeviceAPI.TabIndex = 34
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(308, 566)
+        Me.ClientSize = New System.Drawing.Size(308, 592)
+        Me.Controls.Add(Me.txtDeviceAPI)
+        Me.Controls.Add(Me.txtDeviceAndroid)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.cmdCheckJava)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.LinkLabel1)
@@ -363,7 +405,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmdGetVersions)
         Me.Controls.Add(Me.lblIntroduction)
-        Me.Controls.Add(Me.txtDevice)
+        Me.Controls.Add(Me.txtDeviceModel)
         Me.Controls.Add(Me.lblDevice)
         Me.Controls.Add(Me.cmdCheckConnection)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -379,8 +421,7 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents cmdCheckConnection As Button
-    Friend WithEvents lblDevice As Label
-    Friend WithEvents txtDevice As TextBox
+    Friend WithEvents txtDeviceModel As TextBox
     Friend WithEvents lblIntroduction As Label
     Friend WithEvents cmdGetVersions As Button
     Friend WithEvents Label1 As Label
@@ -409,4 +450,9 @@ Partial Class Form1
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents cmdCheckJava As Button
+    Friend WithEvents lblDevice As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtDeviceAndroid As TextBox
+    Friend WithEvents txtDeviceAPI As TextBox
 End Class

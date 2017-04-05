@@ -11,13 +11,18 @@ Public Class Form1
                    "Manchmal kann ein anderer USB Port oder Kabel Abhilfe schaffen.", MsgBoxStyle.Critical)
             Exit Sub
         Else
-            txtDevice.Text = adbResult
-            Me.Height = 336
+            txtDeviceModel.Text = adbResult
+
+            getADBInfos()
+            txtDeviceAndroid.Text = returnData.androidVersion
+            txtDeviceAPI.Text = returnData.androidAPI
+
+            Me.Height = 361
         End If
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Height = 214
+        Me.Height = 255
     End Sub
     Dim WithEvents wcHome As New WebClient
     Dim WithEvents wcVacuum As New WebClient
@@ -58,7 +63,7 @@ Public Class Form1
             wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & erweiterung(3)), "apk/" & erweiterung(3))
         End If
         If lblErweiterungExists.Visible = True And lblHomeExists.Visible = True Then
-            Me.Height = 369
+            Me.Height = 397
         End If
     End Sub
     Private Sub wcHome_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles wcHome.DownloadProgressChanged
@@ -73,7 +78,7 @@ Public Class Form1
         If (txtHomeMD5.Text <> MD5FileHash("apk/" & txtHomeVersion.Text)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
         Else
-            Me.Height = 369
+            Me.Height = 397
         End If
     End Sub
 
@@ -121,7 +126,7 @@ Public Class Form1
             Help.Text = "MiHome App vorbereiten"
             Help.Show()
             Me.Enabled = False
-            Me.Height = 455
+            Me.Height = 482
         End If
     End Sub
 
@@ -155,7 +160,7 @@ Public Class Form1
         If backupFileSize < 20000000 Then
             MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
         Else
-            Me.Height = 539
+            Me.Height = 566
         End If
     End Sub
 
@@ -189,7 +194,7 @@ Public Class Form1
         oProcess4.StartInfo = oStartInfo4
         oProcess4.Start()
 
-        Me.Height = 573
+        Me.Height = 597
     End Sub
 
     Private Sub cmdCopyTranslation_Click(sender As Object, e As EventArgs) Handles cmdCopyTranslation.Click
@@ -227,7 +232,7 @@ Public Class Form1
         oProcess2.Start()
         oProcess2.WaitForExit()
 
-        Me.Height = 605
+        Me.Height = 631
     End Sub
 
     Private Sub cmdRestore_Click(sender As Object, e As EventArgs) Handles cmdRestore.Click
@@ -274,7 +279,7 @@ Public Class Form1
     End Sub
 
     Private Sub cmdDebug_Click(sender As Object, e As EventArgs) Handles cmdDebug.Click
-        Me.Height = 605
+        Me.Height = 631
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
@@ -289,34 +294,6 @@ Public Class Form1
                "Danke an SlaveofPain für sein Batch-Übersetzungstool!" & vbCrLf &
                "Programmiert von blacksn0w.")
     End Sub
-
-    Function checkADB()
-        'Prüfen ob ADB Gerät immer noch verbunden ist
-        Dim processCheckADB As New Process()
-        Dim infoCheckADB As New ProcessStartInfo("adb/adb.exe", "devices -l")
-        With infoCheckADB
-            .UseShellExecute = False
-            .CreateNoWindow = True
-            .RedirectStandardOutput = True
-        End With
-        processCheckADB.StartInfo = infoCheckADB
-        processCheckADB.Start()
-        Dim sOutput As String
-        Using oStreamReader As System.IO.StreamReader = processCheckADB.StandardOutput
-            sOutput = oStreamReader.ReadToEnd()
-        End Using
-        'Ergebnis etwas anpassen damit es genutzt werden kann
-        Dim result() As String = Split(sOutput, vbCrLf)
-        'Array durchlaufen um zu schauen ob Gerät verbunden ist
-        For Each output As String In result
-            If (output.Contains("product")) Then
-                'Gerät gefunden
-                Dim modelinfos() As String = Split(output, ":")
-                checkADB = modelinfos(3)
-            End If
-        Next
-    End Function
-
     Private Sub cmdCheckJava_Click(sender As Object, e As EventArgs) Handles cmdCheckJava.Click
         'Java Installation prüfen
         Dim JavaProc As New Process()
