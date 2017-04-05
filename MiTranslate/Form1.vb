@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports System.Net
-Imports System.Security.Cryptography
 
 Public Class Form1
     Private Sub cmdCheckConnection_Click(sender As Object, e As EventArgs) Handles cmdCheckConnection.Click
@@ -20,8 +19,8 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Height = 214
     End Sub
-    Dim WithEvents WC As New WebClient
-    Dim WithEvents WC2 As New WebClient
+    Dim WithEvents wcHome As New WebClient
+    Dim WithEvents wcVacuum As New WebClient
     Private Sub cmdGetVersions_Click(sender As Object, e As EventArgs) Handles cmdGetVersions.Click
         Dim erweiterung() As String
         Dim homeapp() As String
@@ -29,7 +28,6 @@ Public Class Form1
             Dim result() As String = Split(client.DownloadString("https://philippwensauer.com/mi/versions.txt"), vbCrLf)
             homeapp = Split(result(0), ";")
             erweiterung = Split(result(1), ";")
-
         End Using
         txtMiHome.Text = homeapp(1)
         txtErweiterung.Text = erweiterung(1)
@@ -47,7 +45,7 @@ Public Class Form1
         Else
             'Datei noch nicht vorhanden, Progressbar einblenden
             pbHome.Visible = True
-            WC.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & homeapp(3)), "apk/" & homeapp(3))
+            wcHome.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & homeapp(3)), "apk/" & homeapp(3))
         End If
 
         'Prüfen ob Dateien schon heruntergeladen wurden (Erweiterung)
@@ -57,20 +55,20 @@ Public Class Form1
         Else
             'Datei noch nicht vorhanden, Progressbar einblenden
             pbErweiterung.Visible = True
-            WC2.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & erweiterung(3)), "apk/" & erweiterung(3))
+            wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & erweiterung(3)), "apk/" & erweiterung(3))
         End If
         If lblErweiterungExists.Visible = True And lblHomeExists.Visible = True Then
             Me.Height = 369
         End If
     End Sub
-    Private Sub WC_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC.DownloadProgressChanged
+    Private Sub wcHome_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles wcHome.DownloadProgressChanged
         pbHome.Value = e.ProgressPercentage
     End Sub
-    Private Sub WC2_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles WC2.DownloadProgressChanged
+    Private Sub wcVacuum_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles wcVacuum.DownloadProgressChanged
         pbErweiterung.Value = e.ProgressPercentage
     End Sub
 
-    Private Sub WC_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles WC.DownloadFileCompleted
+    Private Sub WC_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcHome.DownloadFileCompleted
         'MD5 Hash prüfen
         If (txtHomeMD5.Text <> MD5FileHash("apk/" & txtHomeVersion.Text)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
@@ -79,31 +77,12 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub WC2_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles WC2.DownloadFileCompleted
+    Private Sub WC2_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcVacuum.DownloadFileCompleted
         'MD5 Hash prüfen
         If (txtErweiterungMD5.Text <> MD5FileHash("apk/" & txtErweiterungVersion.Text)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
         End If
     End Sub
-
-    Public Function MD5FileHash(ByVal sFile As String) As String
-        Dim MD5 As New MD5CryptoServiceProvider
-        Dim Hash As Byte()
-        Dim Result As String = ""
-        Dim Tmp As String = ""
-
-        Dim FN As New FileStream(sFile, FileMode.Open, FileAccess.Read, FileShare.Read, 8192)
-        MD5.ComputeHash(FN)
-        FN.Close()
-
-        Hash = MD5.Hash
-        For i As Integer = 0 To Hash.Length - 1
-            Tmp = Hex(Hash(i))
-            If Len(Tmp) = 1 Then Tmp = "0" & Tmp
-            Result += Tmp
-        Next
-        Return Result
-    End Function
 
     Private Sub cmdInstallMiHome_Click(sender As Object, e As EventArgs) Handles cmdInstallMiHome.Click
         Dim adbResult As String = checkADB()
@@ -137,13 +116,11 @@ Public Class Form1
             oProcess2.StartInfo = oStartInfo2
             oProcess2.Start()
             oProcess2.WaitForExit()
-
             'Video zeigen
             Help.AxShockwaveFlash1.Movie = "https://www.youtube.com/v/BOUZ8J2NsM0"
             Help.Text = "MiHome App vorbereiten"
             Help.Show()
             Me.Enabled = False
-
             Me.Height = 455
         End If
     End Sub
@@ -260,30 +237,35 @@ Public Class Form1
             Exit Sub
         Else
             'MiHome Task killen
-            Dim oProcess2 As New Process()
-            Dim oStartInfo2 As New ProcessStartInfo("adb/adb.exe", "shell am force-stop com.xiaomi.smarthome")
-            oStartInfo2.UseShellExecute = False
-            oStartInfo2.CreateNoWindow = True
-            oProcess2.StartInfo = oStartInfo2
-            oProcess2.Start()
-            oProcess2.WaitForExit()
-
-            Dim oProcess As New Process()
-            Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "restore save/newbackup.ab")
-            oStartInfo.UseShellExecute = False
-            oStartInfo.CreateNoWindow = True
-            oProcess.StartInfo = oStartInfo
-            oProcess.Start()
-            oProcess.WaitForExit()
-
+            Dim processStopApp As New Process()
+            Dim infoStopApp As New ProcessStartInfo("adb/adb.exe", "shell am force-stop com.xiaomi.smarthome")
+            With infoStopApp
+                .UseShellExecute = False
+                .CreateNoWindow = True
+            End With
+            processStopApp.StartInfo = infoStopApp
+            processStopApp.Start()
+            processStopApp.WaitForExit()
+            'Backup wiederherstellen
+            Dim processRestoreBackup As New Process()
+            Dim infoRestoreBackup As New ProcessStartInfo("adb/adb.exe", "restore save/newbackup.ab")
+            With infoRestoreBackup
+                .UseShellExecute = False
+                .CreateNoWindow = True
+            End With
+            processRestoreBackup.StartInfo = infoRestoreBackup
+            processRestoreBackup.Start()
+            processRestoreBackup.WaitForExit()
             'Mi Home App starten
-            Dim oProcess3 As New Process()
-            Dim oStartInfo3 As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
-            oStartInfo3.UseShellExecute = False
-            oStartInfo3.CreateNoWindow = True
-            oProcess3.StartInfo = oStartInfo3
-            oProcess3.Start()
-            oProcess3.WaitForExit()
+            Dim processStartApp As New Process()
+            Dim infoStartApp As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
+            With infoStartApp
+                .UseShellExecute = False
+                .CreateNoWindow = True
+            End With
+            processStartApp.StartInfo = infoStartApp
+            processStartApp.Start()
+            processStartApp.WaitForExit()
         End If
     End Sub
 
@@ -304,28 +286,27 @@ Public Class Form1
 
     Private Sub ToolStripStatusLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabel1.Click
         MsgBox("Der größte Dank geht an Henne78 für seine Übersetzungsarbeit!" & vbCrLf &
-               "Danke an SlaveofPain für sein Übersetzungstool!" & vbCrLf &
+               "Danke an SlaveofPain für sein Batch-Übersetzungstool!" & vbCrLf &
                "Programmiert von blacksn0w.")
     End Sub
 
     Function checkADB()
         'Prüfen ob ADB Gerät immer noch verbunden ist
-        Dim oProcess As New Process()
-        Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "devices -l")
-        oStartInfo.UseShellExecute = False
-        oStartInfo.CreateNoWindow = True
-        oStartInfo.RedirectStandardOutput = True
-        oProcess.StartInfo = oStartInfo
-        oProcess.Start()
-
+        Dim processCheckADB As New Process()
+        Dim infoCheckADB As New ProcessStartInfo("adb/adb.exe", "devices -l")
+        With infoCheckADB
+            .UseShellExecute = False
+            .CreateNoWindow = True
+            .RedirectStandardOutput = True
+        End With
+        processCheckADB.StartInfo = infoCheckADB
+        processCheckADB.Start()
         Dim sOutput As String
-        Using oStreamReader As System.IO.StreamReader = oProcess.StandardOutput
+        Using oStreamReader As System.IO.StreamReader = processCheckADB.StandardOutput
             sOutput = oStreamReader.ReadToEnd()
         End Using
-
         'Ergebnis etwas anpassen damit es genutzt werden kann
         Dim result() As String = Split(sOutput, vbCrLf)
-
         'Array durchlaufen um zu schauen ob Gerät verbunden ist
         For Each output As String In result
             If (output.Contains("product")) Then
@@ -340,13 +321,11 @@ Public Class Form1
         'Java Installation prüfen
         Dim JavaProc As New Process()
         Dim JavaProcInfo As New ProcessStartInfo("java", "-version")
-
         With JavaProcInfo
             .UseShellExecute = False
             .RedirectStandardError = True
             .CreateNoWindow = True
         End With
-
         Try
             With JavaProc
                 .StartInfo = JavaProcInfo
@@ -365,13 +344,12 @@ Public Class Form1
                     found = True
                 End If
             Next
-
             If found <> True Then
                 MsgBox("Java scheint installiert zu sein, jedoch keine Runtime Environment. Bitte neu installieren.", MsgBoxStyle.Critical)
             End If
-
         Catch Exc As System.ComponentModel.Win32Exception
             MsgBox("Konnte kein Java finden. Sicher das es installiert ist?", MsgBoxStyle.Critical)
+            Process.Start("https://java.com/de/download/")
         End Try
     End Sub
 End Class
