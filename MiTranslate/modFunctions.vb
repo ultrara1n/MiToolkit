@@ -4,6 +4,7 @@ Imports System.Security.Cryptography
 Public Class returnData
     Public Shared androidVersion As String
     Public Shared androidAPI As String
+    Public Shared androidEncryption As String
 End Class
 
 Module modFunctions
@@ -49,6 +50,7 @@ Module modFunctions
                 'Gerät gefunden
                 Dim modelinfos() As String = Split(output, ":")
                 checkADB = modelinfos(3)
+                Exit For
             End If
         Next
     End Function
@@ -69,6 +71,7 @@ Module modFunctions
         End Using
         returnData.androidVersion = filterDeviceInfo(sOutput, "ro.build.version.release")
         returnData.androidAPI = filterDeviceInfo(sOutput, "ro.build.version.sdk")
+        returnData.androidEncryption = filterDeviceInfo(sOutput, "ro.crypto.state")
     End Function
 
     Function filterDeviceInfo(ByVal completeInfo As String, ByVal infoWanted As String)
@@ -81,9 +84,12 @@ Module modFunctions
                 '[ und ] löschen
                 Dim readyInfo As String = Replace(concreteInfo(1), "[", "")
                 filterDeviceInfo = Replace(readyInfo, "]", "")
+                Exit For
             End If
         Next
-
+        If filterDeviceInfo = "" Then
+            filterDeviceInfo = ""
+        End If
         Return filterDeviceInfo
     End Function
 End Module

@@ -17,6 +17,11 @@ Public Class Form1
             txtDeviceAndroid.Text = returnData.androidVersion
             txtDeviceAPI.Text = returnData.androidAPI
 
+            'Prüfen ob Verschlüsselt
+            If returnData.androidEncryption = "encrypted" Then
+                MsgBox("Ist verschlüsselt.")
+            End If
+
             Me.Height = 361
         End If
     End Sub
