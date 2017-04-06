@@ -19,7 +19,7 @@ Public Class Form1
             txtDeviceAPI.Text = returnData.androidAPI
 
             'Prüfen ob Verschlüsselt
-            If returnData.androidEncryption = "unencrypted" Then
+            If returnData.androidEncryption = "encrypted" Then
                 pbSchloss.Visible = True
                 'Java Verzeichnis herausfinden
                 Dim javaKey As String = "SOFTWARE\JavaSoft\Java Runtime Environment"
@@ -57,13 +57,14 @@ Public Class Form1
                 If sumLocalPolicyNew = sumLocalPolicyOld Then
                     checkInt = checkInt + 1
                 End If
-                If sumUSExportNew = SumUSExportOld Then
+                If sumUSExportNew = sumUSExportOld Then
                     checkInt = checkInt + 1
                 End If
 
                 If (checkInt = 2) Then
                     MsgBox("Deine Security Files sind aktuell, keine Aktualisierung notwendig.")
                 Else
+                    MsgBox("Deine Security Files nicht nicht aktuell, Aktualisierung wird gestartet.")
                     'Alte Security Files löschen
                     Try
                         File.Delete(javaPath & "\lib\security\local_policy.jar")
@@ -200,7 +201,11 @@ Public Class Form1
             File.Delete(deleteFile)
         Next
 
-        MsgBox("Bei der Sicherung KEIN Passwort vergeben!")
+        If pbSchloss.Visible = True Then
+            MsgBox("Als Passwort 123 eingeben!", MsgBoxStyle.Information)
+        Else
+            MsgBox("Bei der Sicherung KEIN Passwort vergeben!")
+        End If
 
         'Sicherung starten
         Dim oProcess As New Process()
@@ -235,7 +240,11 @@ Public Class Form1
         Next
 
         Dim oProcess As New Process()
-        Dim oStartInfo As New ProcessStartInfo("java", "-jar abe.jar unpack save/backup.ab save/backup.tar")
+        Dim backupOption As String = "-jar abe.jar unpack save/backup.ab save/backup.tar"
+        If pbSchloss.Visible = True Then
+            backupOption = "-jar abe.jar unpack save/backup.ab save/backup.tar 123"
+        End If
+        Dim oStartInfo As New ProcessStartInfo("java", backupOption)
         oStartInfo.UseShellExecute = False
         oStartInfo.CreateNoWindow = True
         oProcess.StartInfo = oStartInfo
@@ -288,7 +297,11 @@ Public Class Form1
         oProcess3.WaitForExit()
 
         Dim oProcess2 As New Process()
-        Dim oStartInfo2 As New ProcessStartInfo("java", "-jar abe.jar pack save/newbackup.tar save/newbackup.ab")
+        Dim restoreOption As String = "-jar abe.jar pack save/newbackup.tar save/newbackup.ab"
+        If pbSchloss.Visible = True Then
+            restoreOption = "-jar abe.jar pack save/newbackup.tar save/newbackup.ab 123"
+        End If
+        Dim oStartInfo2 As New ProcessStartInfo("java", restoreOption)
         oStartInfo2.UseShellExecute = False
         oStartInfo2.CreateNoWindow = True
         oProcess2.StartInfo = oStartInfo2
@@ -315,6 +328,9 @@ Public Class Form1
             processStopApp.Start()
             processStopApp.WaitForExit()
             'Backup wiederherstellen
+            If pbSchloss.Visible = True Then
+                MsgBox("Als Passwort 123 eingeben!", MsgBoxStyle.Information)
+            End If
             Dim processRestoreBackup As New Process()
             Dim infoRestoreBackup As New ProcessStartInfo("adb/adb.exe", "restore save/newbackup.ab")
             With infoRestoreBackup

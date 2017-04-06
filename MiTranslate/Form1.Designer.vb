@@ -65,7 +65,7 @@ Partial Class Form1
         '
         'cmdCheckConnection
         '
-        Me.cmdCheckConnection.Location = New System.Drawing.Point(12, 85)
+        Me.cmdCheckConnection.Location = New System.Drawing.Point(12, 83)
         Me.cmdCheckConnection.Name = "cmdCheckConnection"
         Me.cmdCheckConnection.Size = New System.Drawing.Size(123, 23)
         Me.cmdCheckConnection.TabIndex = 0
@@ -322,7 +322,7 @@ Partial Class Form1
         '
         'cmdCheckJava
         '
-        Me.cmdCheckJava.Location = New System.Drawing.Point(178, 85)
+        Me.cmdCheckJava.Location = New System.Drawing.Point(178, 83)
         Me.cmdCheckJava.Name = "cmdCheckJava"
         Me.cmdCheckJava.Size = New System.Drawing.Size(124, 23)
         Me.cmdCheckJava.TabIndex = 30
