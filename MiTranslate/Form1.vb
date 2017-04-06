@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports Microsoft.Win32
 
 Public Class Form1
     Private Sub cmdCheckConnection_Click(sender As Object, e As EventArgs) Handles cmdCheckConnection.Click
@@ -18,11 +19,63 @@ Public Class Form1
             txtDeviceAPI.Text = returnData.androidAPI
 
             'Prüfen ob Verschlüsselt
-            If returnData.androidEncryption = "encrypted" Then
+            If returnData.androidEncryption = "unencrypted" Then
                 MsgBox("Ist verschlüsselt.")
+                'Java Verzeichnis herausfinden
+                Dim javaKey As String = "SOFTWARE\JavaSoft\Java Runtime Environment"
+                Dim javaPath As String
+                Dim javaVersion As String
+                Using baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(javaKey)
+                    javaVersion = baseKey.GetValue("CurrentVersion").ToString()
+                    Using homeKey = baseKey.OpenSubKey(javaVersion)
+                        javaPath = homeKey.GetValue("JavaHome").ToString()
+                    End Using
+                End Using
+
+                'Java Version festlegen
+                Dim javaVersionSmall As Integer
+                If javaVersion.Contains("1.8") Then
+                    javaVersionSmall = 8
+                ElseIf javaVersion.Contains("1.7") Then
+                    javaVersionSmall = 7
+                End If
+
+                'Zu betrachtende Dateien
+                Dim pathLocalPolicyNew = "java/" & javaVersionSmall & "/local_policy.jar"
+                Dim pathLocalPolicyOld = javaPath & "\lib\security\local_policy.jar"
+                Dim pathUSExportNew = "java/" & javaVersionSmall & "/US_export_policy.jar"
+                Dim pathUSExportOld = javaPath & "\lib\security\US_export_policy.jar"
+
+                'Prüfen wir vorab ob die Security Files möglicherweise schon aktuell sind
+                'Damit könnten wir uns das Admin Zeug sparen
+                Dim sumLocalPolicyNew As String = MD5FileHash(pathLocalPolicyNew)
+                Dim sumLocalPolicyOld As String = MD5FileHash(pathLocalPolicyOld)
+                Dim sumUSExportNew As String = MD5FileHash(pathUSExportNew)
+                Dim sumUSExportOld As String = MD5FileHash(pathUSExportOld)
+                Dim checkInt As Integer = 0
+
+                If sumLocalPolicyNew = sumLocalPolicyOld Then
+                    checkInt = checkInt + 1
+                End If
+                If sumUSExportNew = SumUSExportOld Then
+                    checkInt = checkInt + 1
+                End If
+
+                If (checkInt = 2) Then
+                    MsgBox("Deine Security Files sind aktuell, keine Aktualisierung notwendig.")
+                Else
+                    'Alte Security Files löschen
+                    Try
+                        File.Delete(javaPath & "\lib\security\local_policy.jar")
+                    Catch Exc As System.UnauthorizedAccessException
+                        MsgBox("Leider besteht keine Schreibberechtigung auf das Java Verzeichnis, bitte starte das Programm im Administrator Modus neu. " & vbCrLf &
+                               "Rechtsklick -> Als Administrator ausführen")
+                    End Try
+                End If
+            Else
+                Me.Height = 361
             End If
 
-            Me.Height = 361
         End If
     End Sub
 
