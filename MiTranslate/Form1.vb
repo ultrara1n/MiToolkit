@@ -20,7 +20,7 @@ Public Class Form1
 
             'Prüfen ob Verschlüsselt
             If returnData.androidEncryption = "unencrypted" Then
-                MsgBox("Ist verschlüsselt.")
+                pbSchloss.Visible = True
                 'Java Verzeichnis herausfinden
                 Dim javaKey As String = "SOFTWARE\JavaSoft\Java Runtime Environment"
                 Dim javaPath As String
@@ -67,15 +67,20 @@ Public Class Form1
                     'Alte Security Files löschen
                     Try
                         File.Delete(javaPath & "\lib\security\local_policy.jar")
+                        File.Delete(javaPath & "\lib\security\US_export_policy.jar")
                     Catch Exc As System.UnauthorizedAccessException
                         MsgBox("Leider besteht keine Schreibberechtigung auf das Java Verzeichnis, bitte starte das Programm im Administrator Modus neu. " & vbCrLf &
                                "Rechtsklick -> Als Administrator ausführen")
+                        Exit Sub
                     End Try
+
+                    'Neue kopieren
+                    File.Copy(pathLocalPolicyNew, pathLocalPolicyOld)
+                    File.Copy(pathUSExportNew, pathUSExportOld)
                 End If
             Else
-                Me.Height = 361
             End If
-
+            Me.Height = 361
         End If
     End Sub
 

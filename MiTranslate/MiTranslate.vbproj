@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mi-logo.ico" />
+    <None Include="Resources\schloss.png" />
     <None Include="Resources\header.jpg" />
   </ItemGroup>
   <ItemGroup>

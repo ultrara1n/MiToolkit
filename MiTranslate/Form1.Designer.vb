@@ -58,7 +58,9 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtDeviceAndroid = New System.Windows.Forms.TextBox()
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
+        Me.pbSchloss = New System.Windows.Forms.PictureBox()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmdCheckConnection
@@ -316,7 +318,7 @@ Partial Class Form1
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(28, 17)
-        Me.ToolStripStatusLabel2.Text = "v1.1"
+        Me.ToolStripStatusLabel2.Text = "v1.2"
         '
         'cmdCheckJava
         '
@@ -370,6 +372,17 @@ Partial Class Form1
         Me.txtDeviceAPI.Size = New System.Drawing.Size(133, 20)
         Me.txtDeviceAPI.TabIndex = 34
         '
+        'pbSchloss
+        '
+        Me.pbSchloss.Image = Global.MiToolkit.My.Resources.Resources.schloss
+        Me.pbSchloss.Location = New System.Drawing.Point(214, 112)
+        Me.pbSchloss.Name = "pbSchloss"
+        Me.pbSchloss.Size = New System.Drawing.Size(82, 77)
+        Me.pbSchloss.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbSchloss.TabIndex = 35
+        Me.pbSchloss.TabStop = False
+        Me.pbSchloss.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -408,6 +421,7 @@ Partial Class Form1
         Me.Controls.Add(Me.txtDeviceModel)
         Me.Controls.Add(Me.lblDevice)
         Me.Controls.Add(Me.cmdCheckConnection)
+        Me.Controls.Add(Me.pbSchloss)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -415,6 +429,7 @@ Partial Class Form1
         Me.Text = "MiToolkit"
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -455,4 +470,5 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents txtDeviceAndroid As TextBox
     Friend WithEvents txtDeviceAPI As TextBox
+    Friend WithEvents pbSchloss As PictureBox
 End Class
