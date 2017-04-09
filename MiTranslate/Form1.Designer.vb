@@ -59,6 +59,7 @@ Partial Class Form1
         Me.txtDeviceAndroid = New System.Windows.Forms.TextBox()
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -318,7 +319,7 @@ Partial Class Form1
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(28, 17)
-        Me.ToolStripStatusLabel2.Text = "v1.2"
+        Me.ToolStripStatusLabel2.Text = "v1.3"
         '
         'cmdCheckJava
         '
@@ -382,6 +383,12 @@ Partial Class Form1
         Me.pbSchloss.TabIndex = 35
         Me.pbSchloss.TabStop = False
         Me.pbSchloss.Visible = False
+        '
+        'FolderBrowserDialog1
+        '
+        Me.FolderBrowserDialog1.Description = "Bitte den Ordner der JRE auswählen, dieser befindet sich in deinem Java Ordner (b" &
+    "spw. C:\Programme\Java\jre1.8.0_121)"
+        Me.FolderBrowserDialog1.ShowNewFolderButton = False
         '
         'Form1
         '
@@ -471,4 +478,5 @@ Partial Class Form1
     Friend WithEvents txtDeviceAndroid As TextBox
     Friend WithEvents txtDeviceAPI As TextBox
     Friend WithEvents pbSchloss As PictureBox
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
 End Class

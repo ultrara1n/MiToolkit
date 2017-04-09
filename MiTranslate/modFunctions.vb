@@ -5,6 +5,7 @@ Public Class returnData
     Public Shared androidVersion As String
     Public Shared androidAPI As String
     Public Shared androidEncryption As String
+    Public Shared javaInfo As String
 End Class
 
 Module modFunctions
@@ -91,5 +92,35 @@ Module modFunctions
             filterDeviceInfo = ""
         End If
         Return filterDeviceInfo
+    End Function
+
+    Function checkJava()
+        'Java Installation prüfen
+        Dim JavaProc As New Process()
+        Dim JavaProcInfo As New ProcessStartInfo("java", "-version")
+        With JavaProcInfo
+            .UseShellExecute = False
+            .RedirectStandardError = True
+            .CreateNoWindow = True
+        End With
+        Try
+            With JavaProc
+                .StartInfo = JavaProcInfo
+                .Start()
+            End With
+            Dim sOutput As String
+            Using sReader As System.IO.StreamReader = JavaProc.StandardError
+                sOutput = sReader.ReadToEnd()
+            End Using
+
+            Dim info() As String = Split(sOutput, vbCrLf)
+            For Each output As String In info
+                If (output.Contains("Runtime Environment")) Then
+                    returnData.javaInfo = output
+                End If
+            Next
+        Catch Exc As System.ComponentModel.Win32Exception
+            returnData.javaInfo = "ERROR"
+        End Try
     End Function
 End Module

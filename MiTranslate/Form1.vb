@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports System.Security.Principal
 Imports Microsoft.Win32
 
 Public Class Form1
@@ -21,22 +22,40 @@ Public Class Form1
             'Prüfen ob Verschlüsselt
             If returnData.androidEncryption = "encrypted" Then
                 pbSchloss.Visible = True
+
                 'Java Verzeichnis herausfinden
+                'Hier kann es passieren das eine Exception kommt, also fahren wir das über einen Catch
                 Dim javaKey As String = "SOFTWARE\JavaSoft\Java Runtime Environment"
                 Dim javaPath As String
                 Dim javaVersion As String
-                Using baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(javaKey)
-                    javaVersion = baseKey.GetValue("CurrentVersion").ToString()
-                    Using homeKey = baseKey.OpenSubKey(javaVersion)
-                        javaPath = homeKey.GetValue("JavaHome").ToString()
+                Try
+                    Using baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(javaKey)
+                        javaVersion = baseKey.GetValue("CurrentVersion").ToString()
+                        Using homeKey = baseKey.OpenSubKey(javaVersion)
+                            javaPath = homeKey.GetValue("JavaHome").ToString()
+                        End Using
                     End Using
-                End Using
+                Catch Exc As System.NullReferenceException
+                    MsgBox("Leider konnte der Java Ordner nicht automatisch ermittelt werden, bitte wähle ihn manuell aus.")
+                    If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
+                        javaPath = FolderBrowserDialog1.SelectedPath
+                        If (File.Exists(javaPath & "\bin\java.exe")) Then
+                        Else
+                            MsgBox("Der Ordner scheint nicht zu stimmen, in " & javaPath & "\bin\ befindet sich keine java.exe")
+                            Exit Sub
+                        End If
+                    Else
+                        MsgBox("Ohne den Java Ordner kommen wir leider nicht weiter.")
+                        Exit Sub
+                    End If
+                End Try
 
                 'Java Version festlegen
+                checkJava()
                 Dim javaVersionSmall As Integer
-                If javaVersion.Contains("1.8") Then
+                If returnData.javaInfo.Contains("1.8") Then
                     javaVersionSmall = 8
-                ElseIf javaVersion.Contains("1.7") Then
+                ElseIf returnData.javaInfo.Contains("1.7") Then
                     javaVersionSmall = 7
                 End If
 
@@ -288,14 +307,6 @@ Public Class Form1
         oProcess.Start()
         oProcess.WaitForExit()
 
-        Dim oProcess3 As New Process()
-        Dim oStartInfo3 As New ProcessStartInfo("tar.exe", "-rf save/newbackup.tar apps/com.xiaomi.smarthome/_manifest")
-        oStartInfo3.UseShellExecute = False
-        oStartInfo3.CreateNoWindow = True
-        oProcess3.StartInfo = oStartInfo3
-        oProcess3.Start()
-        oProcess3.WaitForExit()
-
         Dim oProcess2 As New Process()
         Dim restoreOption As String = "-jar abe.jar pack save/newbackup.tar save/newbackup.ab"
         If pbSchloss.Visible = True Then
@@ -374,38 +385,12 @@ Public Class Form1
                "Programmiert von blacksn0w.")
     End Sub
     Private Sub cmdCheckJava_Click(sender As Object, e As EventArgs) Handles cmdCheckJava.Click
-        'Java Installation prüfen
-        Dim JavaProc As New Process()
-        Dim JavaProcInfo As New ProcessStartInfo("java", "-version")
-        With JavaProcInfo
-            .UseShellExecute = False
-            .RedirectStandardError = True
-            .CreateNoWindow = True
-        End With
-        Try
-            With JavaProc
-                .StartInfo = JavaProcInfo
-                .Start()
-            End With
-            Dim sOutput As String
-            Using sReader As System.IO.StreamReader = JavaProc.StandardError
-                sOutput = sReader.ReadToEnd()
-            End Using
-
-            Dim info() As String = Split(sOutput, vbCrLf)
-            Dim found As Boolean
-            For Each output As String In info
-                If (output.Contains("Runtime Environment")) Then
-                    MsgBox("Java gefunden: " & output)
-                    found = True
-                End If
-            Next
-            If found <> True Then
-                MsgBox("Java scheint installiert zu sein, jedoch keine Runtime Environment. Bitte neu installieren.", MsgBoxStyle.Critical)
-            End If
-        Catch Exc As System.ComponentModel.Win32Exception
-            MsgBox("Konnte kein Java finden. Sicher das es installiert ist?", MsgBoxStyle.Critical)
+        checkJava()
+        If (returnData.javaInfo = "ERROR") Then
+            MsgBox("Konnte kein Java Runtime Environment finden. Sicher das es installiert ist?", MsgBoxStyle.Critical)
             Process.Start("https://java.com/de/download/")
-        End Try
+        ElseIf returnData.javaInfo <> "" Then
+            MsgBox("Java gefunden: " & returnData.javaInfo)
+        End If
     End Sub
 End Class
