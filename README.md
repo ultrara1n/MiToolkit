@@ -4,6 +4,7 @@
 * Überprüfen der Downloads auf Fehler
 * Videos zur Hilfestellung
 * Überwachung der ADB Verbindung zum Smartphone
+* Unterstützung verschlüsselter Smartphones
 
 # Erfolgreich getestet auf:
 * OnePlus 3T - Android 7.1.1 (LineageOS 14.1)
