@@ -320,7 +320,7 @@ Partial Class Start
         '
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(37, 17)
-        Me.lblVersion.Text = "v1.3.1"
+        Me.lblVersion.Text = "v1.3.2"
         '
         'cmdCheckJava
         '

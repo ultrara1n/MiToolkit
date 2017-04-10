@@ -136,8 +136,15 @@ Public Class Start
 
         'Prüfen ob Dateien schon heruntergeladen wurden (Erweiterung)
         If My.Computer.FileSystem.FileExists("apk/" & erweiterung(3)) Then
-            'Datei schon vorhanden, Text einblenden
-            lblErweiterungExists.Visible = True
+            'Prüfen ob diese auch richtig sind, sonst löschen und noch mal laden
+            If (txtErweiterungMD5.Text <> MD5FileHash("apk/" & txtErweiterungVersion.Text)) Then
+                pbErweiterung.Visible = True
+                File.Delete("apk/" & txtErweiterungVersion.Text)
+                wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & erweiterung(3)), "apk/" & erweiterung(3))
+            Else
+                'Datei schon vorhanden und richtig, Text einblenden
+                lblErweiterungExists.Visible = True
+            End If
         Else
             'Datei noch nicht vorhanden, Progressbar einblenden
             pbErweiterung.Visible = True
@@ -154,7 +161,7 @@ Public Class Start
         pbErweiterung.Value = e.ProgressPercentage
     End Sub
 
-    Private Sub WC_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcHome.DownloadFileCompleted
+    Private Sub wcHome_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcHome.DownloadFileCompleted
         'MD5 Hash prüfen
         If (txtHomeMD5.Text <> MD5FileHash("apk/" & txtHomeVersion.Text)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
@@ -163,10 +170,12 @@ Public Class Start
         End If
     End Sub
 
-    Private Sub WC2_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcVacuum.DownloadFileCompleted
+    Private Sub wcVacuum_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcVacuum.DownloadFileCompleted
         'MD5 Hash prüfen
         If (txtErweiterungMD5.Text <> MD5FileHash("apk/" & txtErweiterungVersion.Text)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
+        ElseIf lblHomeExists.Visible Then
+            Me.Height = 397
         End If
     End Sub
 
