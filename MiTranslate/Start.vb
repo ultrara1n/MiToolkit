@@ -299,6 +299,7 @@ Public Class Start
         'Sicherung wieder komprimieren
         Dim oProcess As New Process()
         Dim oStartInfo As New ProcessStartInfo("star.exe", "-c -v -f save/newbackup.tar -no-dirslash list=save/backup.list")
+        'Dim oStartInfo As New ProcessStartInfo("tar.exe", "cf save/newbackup.tar -T save/backup.list")
         oStartInfo.UseShellExecute = False
         oStartInfo.CreateNoWindow = True
         oProcess.StartInfo = oStartInfo
