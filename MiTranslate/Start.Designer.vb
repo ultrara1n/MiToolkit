@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class Start
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Start))
         Me.cmdCheckConnection = New System.Windows.Forms.Button()
         Me.txtDeviceModel = New System.Windows.Forms.TextBox()
         Me.lblIntroduction = New System.Windows.Forms.Label()
@@ -49,9 +49,9 @@ Partial Class Form1
         Me.cmdForceNext = New System.Windows.Forms.Button()
         Me.cmdDebug = New System.Windows.Forms.Button()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ssFooter = New System.Windows.Forms.StatusStrip()
+        Me.lblMitwirkende = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblVersion = New System.Windows.Forms.ToolStripStatusLabel()
         Me.cmdCheckJava = New System.Windows.Forms.Button()
         Me.lblDevice = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -59,8 +59,8 @@ Partial Class Form1
         Me.txtDeviceAndroid = New System.Windows.Forms.TextBox()
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.StatusStrip1.SuspendLayout()
+        Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ssFooter.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -218,10 +218,11 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(12, 338)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(293, 39)
+        Me.Label3.Size = New System.Drawing.Size(298, 39)
         Me.Label3.TabIndex = 20
-        Me.Label3.Text = "Nach erfolgreicher Installation wird sich MiHome automatisch" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "öffnen. Bitte einma" &
-    "l den Roboter öffnen um das aktuelle " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Plugin zu laden. "
+        Me.Label3.Text = "Nach erfolgreicher Installation wird sich MiHome automatisch" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "öffnen. Den Roboter" &
+    " öffnen um das aktuelle Plugin zu laden.  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "MiHome sollte für die Sicherung offe" &
+    "n sein!"
         '
         'cmdSicherung
         '
@@ -299,27 +300,27 @@ Partial Class Form1
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "hier"
         '
-        'StatusStrip1
+        'ssFooter
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 570)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(308, 22)
-        Me.StatusStrip1.SizingGrip = False
-        Me.StatusStrip1.TabIndex = 29
-        Me.StatusStrip1.Text = "StatusStrip1"
+        Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion})
+        Me.ssFooter.Location = New System.Drawing.Point(0, 570)
+        Me.ssFooter.Name = "ssFooter"
+        Me.ssFooter.Size = New System.Drawing.Size(308, 22)
+        Me.ssFooter.SizingGrip = False
+        Me.ssFooter.TabIndex = 29
+        Me.ssFooter.Text = "StatusStrip1"
         '
-        'ToolStripStatusLabel1
+        'lblMitwirkende
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(73, 17)
-        Me.ToolStripStatusLabel1.Text = "Mitwirkende"
+        Me.lblMitwirkende.Name = "lblMitwirkende"
+        Me.lblMitwirkende.Size = New System.Drawing.Size(73, 17)
+        Me.lblMitwirkende.Text = "Mitwirkende"
         '
-        'ToolStripStatusLabel2
+        'lblVersion
         '
-        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(28, 17)
-        Me.ToolStripStatusLabel2.Text = "v1.3"
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(37, 17)
+        Me.lblVersion.Text = "v1.3.1"
         '
         'cmdCheckJava
         '
@@ -384,13 +385,13 @@ Partial Class Form1
         Me.pbSchloss.TabStop = False
         Me.pbSchloss.Visible = False
         '
-        'FolderBrowserDialog1
+        'fdbJava
         '
-        Me.FolderBrowserDialog1.Description = "Bitte den Ordner der JRE auswählen, dieser befindet sich in deinem Java Ordner (b" &
+        Me.fdbJava.Description = "Bitte den Ordner der JRE auswählen, dieser befindet sich in deinem Java Ordner (b" &
     "spw. C:\Programme\Java\jre1.8.0_121)"
-        Me.FolderBrowserDialog1.ShowNewFolderButton = False
+        Me.fdbJava.ShowNewFolderButton = False
         '
-        'Form1
+        'Start
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -400,7 +401,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.cmdCheckJava)
-        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.ssFooter)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.cmdDebug)
         Me.Controls.Add(Me.cmdForceNext)
@@ -432,10 +433,10 @@ Partial Class Form1
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "Start"
         Me.Text = "MiToolkit"
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
+        Me.ssFooter.ResumeLayout(False)
+        Me.ssFooter.PerformLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -468,9 +469,9 @@ Partial Class Form1
     Friend WithEvents cmdForceNext As Button
     Friend WithEvents cmdDebug As Button
     Friend WithEvents LinkLabel1 As LinkLabel
-    Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents ssFooter As StatusStrip
+    Friend WithEvents lblMitwirkende As ToolStripStatusLabel
+    Friend WithEvents lblVersion As ToolStripStatusLabel
     Friend WithEvents cmdCheckJava As Button
     Friend WithEvents lblDevice As Label
     Friend WithEvents Label5 As Label
@@ -478,5 +479,5 @@ Partial Class Form1
     Friend WithEvents txtDeviceAndroid As TextBox
     Friend WithEvents txtDeviceAPI As TextBox
     Friend WithEvents pbSchloss As PictureBox
-    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents fdbJava As FolderBrowserDialog
 End Class

@@ -78,6 +78,7 @@ Module modFunctions
     Function filterDeviceInfo(ByVal completeInfo As String, ByVal infoWanted As String)
         'Kompletten Dump durchlaufen um gewollte Infos zu erhalten
         Dim infoArray() As String = Split(completeInfo, vbCrLf)
+        filterDeviceInfo = ""
         For Each infoPart As String In infoArray
             If (infoPart.Contains(infoWanted)) Then
                 'Nach Doppelpunkt splitten
@@ -88,9 +89,6 @@ Module modFunctions
                 Exit For
             End If
         Next
-        If filterDeviceInfo = "" Then
-            filterDeviceInfo = ""
-        End If
         Return filterDeviceInfo
     End Function
 

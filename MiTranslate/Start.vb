@@ -1,9 +1,8 @@
 ﻿Imports System.IO
 Imports System.Net
-Imports System.Security.Principal
 Imports Microsoft.Win32
 
-Public Class Form1
+Public Class Start
     Private Sub cmdCheckConnection_Click(sender As Object, e As EventArgs) Handles cmdCheckConnection.Click
         Dim adbResult As String = checkADB()
 
@@ -37,8 +36,8 @@ Public Class Form1
                     End Using
                 Catch Exc As System.NullReferenceException
                     MsgBox("Leider konnte der Java Ordner nicht automatisch ermittelt werden, bitte wähle ihn manuell aus.")
-                    If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
-                        javaPath = FolderBrowserDialog1.SelectedPath
+                    If fdbJava.ShowDialog() = DialogResult.OK Then
+                        javaPath = fdbJava.SelectedPath
                         If (File.Exists(javaPath & "\bin\java.exe")) Then
                         Else
                             MsgBox("Der Ordner scheint nicht zu stimmen, in " & javaPath & "\bin\ befindet sich keine java.exe")
@@ -84,19 +83,18 @@ Public Class Form1
                     MsgBox("Deine Security Files sind aktuell, keine Aktualisierung notwendig.")
                 Else
                     MsgBox("Deine Security Files nicht nicht aktuell, Aktualisierung wird gestartet.")
-                    'Alte Security Files löschen
                     Try
+                        'Alte Security Files löschen
                         File.Delete(javaPath & "\lib\security\local_policy.jar")
                         File.Delete(javaPath & "\lib\security\US_export_policy.jar")
+                        'Neue kopieren
+                        File.Copy(pathLocalPolicyNew, pathLocalPolicyOld)
+                        File.Copy(pathUSExportNew, pathUSExportOld)
                     Catch Exc As System.UnauthorizedAccessException
                         MsgBox("Leider besteht keine Schreibberechtigung auf das Java Verzeichnis, bitte starte das Programm im Administrator Modus neu. " & vbCrLf &
                                "Rechtsklick -> Als Administrator ausführen")
                         Exit Sub
                     End Try
-
-                    'Neue kopieren
-                    File.Copy(pathLocalPolicyNew, pathLocalPolicyOld)
-                    File.Copy(pathUSExportNew, pathUSExportOld)
                 End If
             Else
             End If
@@ -331,10 +329,8 @@ Public Class Form1
             'MiHome Task killen
             Dim processStopApp As New Process()
             Dim infoStopApp As New ProcessStartInfo("adb/adb.exe", "shell am force-stop com.xiaomi.smarthome")
-            With infoStopApp
-                .UseShellExecute = False
-                .CreateNoWindow = True
-            End With
+            infoStopApp.UseShellExecute = False
+            infoStopApp.CreateNoWindow = True
             processStopApp.StartInfo = infoStopApp
             processStopApp.Start()
             processStopApp.WaitForExit()
@@ -344,20 +340,16 @@ Public Class Form1
             End If
             Dim processRestoreBackup As New Process()
             Dim infoRestoreBackup As New ProcessStartInfo("adb/adb.exe", "restore save/newbackup.ab")
-            With infoRestoreBackup
-                .UseShellExecute = False
-                .CreateNoWindow = True
-            End With
+            infoRestoreBackup.UseShellExecute = False
+            infoRestoreBackup.CreateNoWindow = True
             processRestoreBackup.StartInfo = infoRestoreBackup
             processRestoreBackup.Start()
             processRestoreBackup.WaitForExit()
             'Mi Home App starten
             Dim processStartApp As New Process()
             Dim infoStartApp As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
-            With infoStartApp
-                .UseShellExecute = False
-                .CreateNoWindow = True
-            End With
+            infoStartApp.UseShellExecute = False
+            infoStartApp.CreateNoWindow = True
             processStartApp.StartInfo = infoStartApp
             processStartApp.Start()
             processStartApp.WaitForExit()
@@ -379,7 +371,7 @@ Public Class Form1
         Me.Enabled = False
     End Sub
 
-    Private Sub ToolStripStatusLabel1_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabel1.Click
+    Private Sub lblMitwirkende_Click(sender As Object, e As EventArgs) Handles lblMitwirkende.Click
         MsgBox("Der größte Dank geht an Henne78 für seine Übersetzungsarbeit!" & vbCrLf &
                "Danke an SlaveofPain für sein Batch-Übersetzungstool!" & vbCrLf &
                "Programmiert von blacksn0w.")
