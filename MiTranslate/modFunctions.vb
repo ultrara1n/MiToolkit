@@ -1,11 +1,15 @@
 ﻿Imports System.IO
 Imports System.Security.Cryptography
 
-Public Class returnData
+Public Class globalData
     Public Shared androidVersion As String
     Public Shared androidAPI As String
     Public Shared androidEncryption As String
     Public Shared javaInfo As String
+    Public Shared homeVersion As String
+    Public Shared homeMD5 As String
+    Public Shared vacuumVersion As String
+    Public Shared vacuumMD5 As String
 End Class
 
 Module modFunctions
@@ -70,9 +74,9 @@ Module modFunctions
         Using oStreamReader As System.IO.StreamReader = processDeviceInformation.StandardOutput
             sOutput = oStreamReader.ReadToEnd()
         End Using
-        returnData.androidVersion = filterDeviceInfo(sOutput, "ro.build.version.release")
-        returnData.androidAPI = filterDeviceInfo(sOutput, "ro.build.version.sdk")
-        returnData.androidEncryption = filterDeviceInfo(sOutput, "ro.crypto.state")
+        globalData.androidVersion = filterDeviceInfo(sOutput, "ro.build.version.release")
+        globalData.androidAPI = filterDeviceInfo(sOutput, "ro.build.version.sdk")
+        globalData.androidEncryption = filterDeviceInfo(sOutput, "ro.crypto.state")
     End Function
 
     Function filterDeviceInfo(ByVal completeInfo As String, ByVal infoWanted As String)
@@ -114,11 +118,11 @@ Module modFunctions
             Dim info() As String = Split(sOutput, vbCrLf)
             For Each output As String In info
                 If (output.Contains("Runtime Environment")) Then
-                    returnData.javaInfo = output
+                    globalData.javaInfo = output
                 End If
             Next
         Catch Exc As System.ComponentModel.Win32Exception
-            returnData.javaInfo = "ERROR"
+            globalData.javaInfo = "ERROR"
         End Try
     End Function
 End Module

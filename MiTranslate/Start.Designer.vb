@@ -35,10 +35,6 @@ Partial Class Start
         Me.pbErweiterung = New System.Windows.Forms.ProgressBar()
         Me.lblHomeExists = New System.Windows.Forms.Label()
         Me.lblErweiterungExists = New System.Windows.Forms.Label()
-        Me.txtHomeVersion = New System.Windows.Forms.TextBox()
-        Me.txtHomeMD5 = New System.Windows.Forms.TextBox()
-        Me.txtErweiterungMD5 = New System.Windows.Forms.TextBox()
-        Me.txtErweiterungVersion = New System.Windows.Forms.TextBox()
         Me.cmdInstallMiHome = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmdSicherung = New System.Windows.Forms.Button()
@@ -172,38 +168,6 @@ Partial Class Start
         Me.lblErweiterungExists.Text = "Bereits heruntergeladen"
         Me.lblErweiterungExists.Visible = False
         '
-        'txtHomeVersion
-        '
-        Me.txtHomeVersion.Location = New System.Drawing.Point(168, 195)
-        Me.txtHomeVersion.Name = "txtHomeVersion"
-        Me.txtHomeVersion.Size = New System.Drawing.Size(23, 20)
-        Me.txtHomeVersion.TabIndex = 14
-        Me.txtHomeVersion.Visible = False
-        '
-        'txtHomeMD5
-        '
-        Me.txtHomeMD5.Location = New System.Drawing.Point(197, 195)
-        Me.txtHomeMD5.Name = "txtHomeMD5"
-        Me.txtHomeMD5.Size = New System.Drawing.Size(23, 20)
-        Me.txtHomeMD5.TabIndex = 16
-        Me.txtHomeMD5.Visible = False
-        '
-        'txtErweiterungMD5
-        '
-        Me.txtErweiterungMD5.Location = New System.Drawing.Point(273, 195)
-        Me.txtErweiterungMD5.Name = "txtErweiterungMD5"
-        Me.txtErweiterungMD5.Size = New System.Drawing.Size(23, 20)
-        Me.txtErweiterungMD5.TabIndex = 18
-        Me.txtErweiterungMD5.Visible = False
-        '
-        'txtErweiterungVersion
-        '
-        Me.txtErweiterungVersion.Location = New System.Drawing.Point(244, 195)
-        Me.txtErweiterungVersion.Name = "txtErweiterungVersion"
-        Me.txtErweiterungVersion.Size = New System.Drawing.Size(23, 20)
-        Me.txtErweiterungVersion.TabIndex = 17
-        Me.txtErweiterungVersion.Visible = False
-        '
         'cmdInstallMiHome
         '
         Me.cmdInstallMiHome.Location = New System.Drawing.Point(12, 301)
@@ -288,7 +252,6 @@ Partial Class Start
         Me.cmdDebug.TabIndex = 27
         Me.cmdDebug.Text = "Debug"
         Me.cmdDebug.UseVisualStyleBackColor = True
-        Me.cmdDebug.Visible = False
         '
         'LinkLabel1
         '
@@ -320,7 +283,7 @@ Partial Class Start
         '
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(37, 17)
-        Me.lblVersion.Text = "v1.3.2"
+        Me.lblVersion.Text = "v1.3.3"
         '
         'cmdCheckJava
         '
@@ -412,10 +375,6 @@ Partial Class Start
         Me.Controls.Add(Me.cmdSicherung)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cmdInstallMiHome)
-        Me.Controls.Add(Me.txtErweiterungMD5)
-        Me.Controls.Add(Me.txtErweiterungVersion)
-        Me.Controls.Add(Me.txtHomeMD5)
-        Me.Controls.Add(Me.txtHomeVersion)
         Me.Controls.Add(Me.lblErweiterungExists)
         Me.Controls.Add(Me.lblHomeExists)
         Me.Controls.Add(Me.pbErweiterung)
@@ -455,10 +414,6 @@ Partial Class Start
     Friend WithEvents pbErweiterung As ProgressBar
     Friend WithEvents lblHomeExists As Label
     Friend WithEvents lblErweiterungExists As Label
-    Friend WithEvents txtHomeVersion As TextBox
-    Friend WithEvents txtHomeMD5 As TextBox
-    Friend WithEvents txtErweiterungMD5 As TextBox
-    Friend WithEvents txtErweiterungVersion As TextBox
     Friend WithEvents cmdInstallMiHome As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents cmdSicherung As Button

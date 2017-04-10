@@ -15,11 +15,11 @@ Public Class Start
             txtDeviceModel.Text = adbResult
 
             getADBInfos()
-            txtDeviceAndroid.Text = returnData.androidVersion
-            txtDeviceAPI.Text = returnData.androidAPI
+            txtDeviceAndroid.Text = globalData.androidVersion
+            txtDeviceAPI.Text = globalData.androidAPI
 
             'Prüfen ob Verschlüsselt
-            If returnData.androidEncryption = "encrypted" Then
+            If globalData.androidEncryption = "encrypted" Then
                 pbSchloss.Visible = True
 
                 'Java Verzeichnis herausfinden
@@ -52,9 +52,9 @@ Public Class Start
                 'Java Version festlegen
                 checkJava()
                 Dim javaVersionSmall As Integer
-                If returnData.javaInfo.Contains("1.8") Then
+                If globalData.javaInfo.Contains("1.8") Then
                     javaVersionSmall = 8
-                ElseIf returnData.javaInfo.Contains("1.7") Then
+                ElseIf globalData.javaInfo.Contains("1.7") Then
                     javaVersionSmall = 7
                 End If
 
@@ -108,21 +108,21 @@ Public Class Start
     Dim WithEvents wcHome As New WebClient
     Dim WithEvents wcVacuum As New WebClient
     Private Sub cmdGetVersions_Click(sender As Object, e As EventArgs) Handles cmdGetVersions.Click
-        Dim erweiterung() As String
         Dim homeapp() As String
+        Dim vacuum() As String
         Using client = New WebClient()
-            Dim result() As String = Split(client.DownloadString("https://philippwensauer.com/mi/versions.txt"), vbCrLf)
+            Dim result() As String = Split(client.DownloadString("https://philippwensauer.com/mi/versions.txt?v=" & lblVersion.Text), vbCrLf)
             homeapp = Split(result(0), ";")
-            erweiterung = Split(result(1), ";")
+            vacuum = Split(result(1), ";")
         End Using
         txtMiHome.Text = homeapp(1)
-        txtErweiterung.Text = erweiterung(1)
+        txtErweiterung.Text = vacuum(1)
 
         'Daten zwischenspeichern
-        txtHomeVersion.Text = homeapp(3)
-        txtHomeMD5.Text = UCase(homeapp(4))
-        txtErweiterungVersion.Text = erweiterung(3)
-        txtErweiterungMD5.Text = UCase(erweiterung(4))
+        globalData.homeVersion = homeapp(3)
+        globalData.homeMD5 = UCase(homeapp(4))
+        globalData.vacuumVersion = vacuum(3)
+        globalData.vacuumMD5 = UCase(vacuum(4))
 
         'Prüfen ob Dateien schon heruntergeladen wurden (Home)
         If My.Computer.FileSystem.FileExists("apk/" & homeapp(3)) Then
@@ -135,12 +135,12 @@ Public Class Start
         End If
 
         'Prüfen ob Dateien schon heruntergeladen wurden (Erweiterung)
-        If My.Computer.FileSystem.FileExists("apk/" & erweiterung(3)) Then
+        If My.Computer.FileSystem.FileExists("apk/" & vacuum(3)) Then
             'Prüfen ob diese auch richtig sind, sonst löschen und noch mal laden
-            If (txtErweiterungMD5.Text <> MD5FileHash("apk/" & txtErweiterungVersion.Text)) Then
+            If (globalData.vacuumMD5 <> MD5FileHash("apk/" & globalData.vacuumVersion)) Then
                 pbErweiterung.Visible = True
-                File.Delete("apk/" & txtErweiterungVersion.Text)
-                wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & erweiterung(3)), "apk/" & erweiterung(3))
+                File.Delete("apk/" & globalData.vacuumVersion)
+                wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & vacuum(3)), "apk/" & vacuum(3))
             Else
                 'Datei schon vorhanden und richtig, Text einblenden
                 lblErweiterungExists.Visible = True
@@ -148,7 +148,7 @@ Public Class Start
         Else
             'Datei noch nicht vorhanden, Progressbar einblenden
             pbErweiterung.Visible = True
-            wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & erweiterung(3)), "apk/" & erweiterung(3))
+            wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & vacuum(3)), "apk/" & vacuum(3))
         End If
         If lblErweiterungExists.Visible = True And lblHomeExists.Visible = True Then
             Me.Height = 397
@@ -163,7 +163,7 @@ Public Class Start
 
     Private Sub wcHome_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcHome.DownloadFileCompleted
         'MD5 Hash prüfen
-        If (txtHomeMD5.Text <> MD5FileHash("apk/" & txtHomeVersion.Text)) Then
+        If (globalData.homeMD5 <> MD5FileHash("apk/" & globalData.homeVersion)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
         Else
             Me.Height = 397
@@ -172,7 +172,7 @@ Public Class Start
 
     Private Sub wcVacuum_DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs) Handles wcVacuum.DownloadFileCompleted
         'MD5 Hash prüfen
-        If (txtErweiterungMD5.Text <> MD5FileHash("apk/" & txtErweiterungVersion.Text)) Then
+        If (globalData.vacuumMD5 <> MD5FileHash("apk/" & globalData.vacuumVersion)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
         ElseIf lblHomeExists.Visible Then
             Me.Height = 397
@@ -196,7 +196,7 @@ Public Class Start
 
             'Mi Home App installieren
             Dim oProcess As New Process()
-            Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "install -r apk/" & txtHomeVersion.Text)
+            Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "install -r apk/" & globalData.homeVersion)
             oStartInfo.UseShellExecute = False
             oStartInfo.CreateNoWindow = True
             oProcess.StartInfo = oStartInfo
@@ -303,7 +303,7 @@ Public Class Start
         Next
 
         'Neue Plugin Datei kopieren
-        File.Copy("apk/" & txtErweiterungVersion.Text, directoryName & "/" & txtErweiterungVersion.Text)
+        File.Copy("apk/" & globalData.vacuumVersion, directoryName & "/" & globalData.vacuumVersion)
 
         'Sicherung wieder komprimieren
         Dim oProcess As New Process()
@@ -388,11 +388,11 @@ Public Class Start
     End Sub
     Private Sub cmdCheckJava_Click(sender As Object, e As EventArgs) Handles cmdCheckJava.Click
         checkJava()
-        If (returnData.javaInfo = "ERROR") Then
+        If (globalData.javaInfo = "ERROR") Then
             MsgBox("Konnte kein Java Runtime Environment finden. Sicher das es installiert ist?", MsgBoxStyle.Critical)
             Process.Start("https://java.com/de/download/")
-        ElseIf returnData.javaInfo <> "" Then
-            MsgBox("Java gefunden: " & returnData.javaInfo)
+        ElseIf globalData.javaInfo <> "" Then
+            MsgBox("Java gefunden: " & globalData.javaInfo)
         End If
     End Sub
 End Class
