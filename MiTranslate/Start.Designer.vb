@@ -83,11 +83,11 @@ Partial Class Start
         Me.lblIntroduction.BackColor = System.Drawing.Color.Transparent
         Me.lblIntroduction.Location = New System.Drawing.Point(12, 9)
         Me.lblIntroduction.Name = "lblIntroduction"
-        Me.lblIntroduction.Size = New System.Drawing.Size(250, 65)
+        Me.lblIntroduction.Size = New System.Drawing.Size(230, 65)
         Me.lblIntroduction.TabIndex = 4
-        Me.lblIntroduction.Text = "Stelle sicher das USB-Debugging aktiviert ist" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "und du alle nötigen Gerätetreiber " &
-    "installiert hast." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Eine Anleitung wie der Debug Modus aktiviert wird, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "erhäls" &
-    "t du"
+        Me.lblIntroduction.Text = "Stelle sicher, dass USB-Debugging aktiviert ist" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "und du alle nötigen Gerätetreibe" &
+    "r installiert hast." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Eine Video-Anleitung zum Aktivieren von" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "USB-Debugging gi" &
+    "bt es"
         '
         'cmdGetVersions
         '
@@ -252,11 +252,12 @@ Partial Class Start
         Me.cmdDebug.TabIndex = 27
         Me.cmdDebug.Text = "Debug"
         Me.cmdDebug.UseVisualStyleBackColor = True
+        Me.cmdDebug.Visible = False
         '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(61, 61)
+        Me.LinkLabel1.Location = New System.Drawing.Point(127, 61)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(24, 13)
         Me.LinkLabel1.TabIndex = 28
