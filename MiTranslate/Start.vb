@@ -336,12 +336,26 @@ Public Class Start
     End Sub
 
     Private Sub cmdGetToken_Click(sender As Object, e As EventArgs) Handles cmdGetToken.Click
-        If doBackup() < 20000000 Then
-            MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
-        Else
-            MsgBox("Backup erfolgreich, wird jetzt entpackt.")
-            extractBackup()
-        End If
+        'If doBackup() < 20000000 Then
+        '    MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
+        'Else
+        '    MsgBox("Backup erfolgreich, wird jetzt entpackt.")
+        '    extractBackup()
+        Dim connect As New SQLite.SQLiteConnection()
+        Dim command As SQLite.SQLiteCommand
+        connect.ConnectionString = "Data Source=apps/com.xiaomi.smarthome/db/miio2.db;"
+        connect.Open()
+        command = connect.CreateCommand
+        'command.CommandText = "SELECT name, token, model FROM devicerecord WHERE model = 'rockrobo.vacuum.v1'"
+        command.CommandText = "SELECT name, token, model FROM devicerecord"
+        Dim SQLreader As SQLite.SQLiteDataReader = command.ExecuteReader()
+        While SQLreader.Read()
+            showToken.tbToken.AppendText(SQLreader(2) & " - " & SQLreader(0) & " - " & SQLreader(1) & vbCrLf)
+            showToken.Show()
+        End While
+        command.Dispose()
+        connect.Close()
+        'End If
     End Sub
 
     Function doBackup()

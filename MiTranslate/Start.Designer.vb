@@ -57,6 +57,7 @@ Partial Class Start
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
         Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
         Me.cmdGetToken = New System.Windows.Forms.Button()
+        Me.tbToken = New System.Windows.Forms.RichTextBox()
         Me.ssFooter.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -269,7 +270,7 @@ Partial Class Start
         Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion})
         Me.ssFooter.Location = New System.Drawing.Point(0, 570)
         Me.ssFooter.Name = "ssFooter"
-        Me.ssFooter.Size = New System.Drawing.Size(308, 22)
+        Me.ssFooter.Size = New System.Drawing.Size(312, 22)
         Me.ssFooter.SizingGrip = False
         Me.ssFooter.TabIndex = 29
         Me.ssFooter.Text = "StatusStrip1"
@@ -364,11 +365,22 @@ Partial Class Start
         Me.cmdGetToken.Text = "Token auslesen"
         Me.cmdGetToken.UseVisualStyleBackColor = True
         '
+        'tbToken
+        '
+        Me.tbToken.Location = New System.Drawing.Point(321, 89)
+        Me.tbToken.Name = "tbToken"
+        Me.tbToken.ReadOnly = True
+        Me.tbToken.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
+        Me.tbToken.Size = New System.Drawing.Size(268, 129)
+        Me.tbToken.TabIndex = 38
+        Me.tbToken.Text = ""
+        '
         'Start
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(308, 592)
+        Me.ClientSize = New System.Drawing.Size(312, 592)
+        Me.Controls.Add(Me.tbToken)
         Me.Controls.Add(Me.txtDeviceAPI)
         Me.Controls.Add(Me.txtDeviceAndroid)
         Me.Controls.Add(Me.Label6)
@@ -447,4 +459,5 @@ Partial Class Start
     Friend WithEvents pbSchloss As PictureBox
     Friend WithEvents fdbJava As FolderBrowserDialog
     Friend WithEvents cmdGetToken As Button
+    Friend WithEvents tbToken As RichTextBox
 End Class
