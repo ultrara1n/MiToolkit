@@ -221,37 +221,7 @@ Public Class Start
     End Sub
 
     Private Sub cmdSicherung_Click(sender As Object, e As EventArgs) Handles cmdSicherung.Click
-        'Sicherungsordner leeren
-        Dim directoryName As String = "save/"
-        For Each deleteFile In Directory.GetFiles(directoryName, "*.*", SearchOption.TopDirectoryOnly)
-            File.Delete(deleteFile)
-        Next
-
-        If pbSchloss.Visible = True Then
-            MsgBox("Als Passwort 123 eingeben!", MsgBoxStyle.Information)
-        Else
-            MsgBox("Bei der Sicherung KEIN Passwort vergeben!")
-        End If
-
-        'Sicherung starten
-        Dim oProcess As New Process()
-        Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "backup -f save/backup.ab -apk com.xiaomi.smarthome")
-        oStartInfo.UseShellExecute = False
-        oStartInfo.CreateNoWindow = True
-        oStartInfo.RedirectStandardOutput = True
-        oProcess.StartInfo = oStartInfo
-        oProcess.Start()
-
-        Dim sOutput As String
-        Using oStreamReader As System.IO.StreamReader = oProcess.StandardOutput
-            sOutput = oStreamReader.ReadToEnd()
-        End Using
-
-        'Backupgröße testen, sonst Fehler auswerfen
-        Dim backupFile As New FileInfo("save/backup.ab")
-        Dim backupFileSize As Long = backupFile.Length
-
-        If backupFileSize < 20000000 Then
+        If doBackup() < 20000000 Then
             MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
         Else
             Me.Height = 566
@@ -259,38 +229,7 @@ Public Class Start
     End Sub
 
     Private Sub cmdExtract_Click(sender As Object, e As EventArgs) Handles cmdExtract.Click
-        'apps leeren
-        Dim directoryName As String = "apps/"
-        For Each deleteFile In Directory.GetFiles(directoryName, "*", SearchOption.TopDirectoryOnly)
-            File.Delete(deleteFile)
-        Next
-
-        Dim oProcess As New Process()
-        Dim backupOption As String = "-jar abe.jar unpack save/backup.ab save/backup.tar"
-        If pbSchloss.Visible = True Then
-            backupOption = "-jar abe.jar unpack save/backup.ab save/backup.tar 123"
-        End If
-        Dim oStartInfo As New ProcessStartInfo("java", backupOption)
-        oStartInfo.UseShellExecute = False
-        oStartInfo.CreateNoWindow = True
-        oProcess.StartInfo = oStartInfo
-        oProcess.Start()
-        oProcess.WaitForExit()
-
-        Dim oProcess2 As New Process()
-        Dim oStartInfo2 As New ProcessStartInfo("tar.exe", "-xvf save/backup.tar")
-        oStartInfo2.UseShellExecute = False
-        oStartInfo2.CreateNoWindow = True
-        oProcess2.StartInfo = oStartInfo2
-        oProcess2.Start()
-        oProcess2.WaitForExit()
-
-        Dim oProcess4 As New Process()
-        Dim oStartInfo4 As New ProcessStartInfo("list.cmd")
-        oStartInfo4.UseShellExecute = False
-        oStartInfo4.CreateNoWindow = True
-        oProcess4.StartInfo = oStartInfo4
-        oProcess4.Start()
+        extractBackup()
 
         Me.Height = 597
     End Sub
@@ -395,4 +334,82 @@ Public Class Start
             MsgBox("Java gefunden: " & globalData.javaInfo)
         End If
     End Sub
+
+    Private Sub cmdGetToken_Click(sender As Object, e As EventArgs) Handles cmdGetToken.Click
+        If doBackup() < 20000000 Then
+            MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
+        Else
+            MsgBox("Backup erfolgreich, wird jetzt entpackt.")
+            extractBackup()
+        End If
+    End Sub
+
+    Function doBackup()
+        'Sicherungsordner leeren
+        Dim directoryName As String = "save/"
+        For Each deleteFile In Directory.GetFiles(directoryName, "*.*", SearchOption.TopDirectoryOnly)
+            File.Delete(deleteFile)
+        Next
+
+        If pbSchloss.Visible = True Then
+            MsgBox("Als Passwort 123 eingeben!", MsgBoxStyle.Information)
+        Else
+            MsgBox("Bei der Sicherung KEIN Passwort vergeben!")
+        End If
+
+        'Sicherung starten
+        Dim oProcess As New Process()
+        Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "backup -f save/backup.ab -apk com.xiaomi.smarthome")
+        oStartInfo.UseShellExecute = False
+        oStartInfo.CreateNoWindow = True
+        oStartInfo.RedirectStandardOutput = True
+        oProcess.StartInfo = oStartInfo
+        oProcess.Start()
+
+        Dim sOutput As String
+        Using oStreamReader As System.IO.StreamReader = oProcess.StandardOutput
+            sOutput = oStreamReader.ReadToEnd()
+        End Using
+
+        'Backupgröße testen, sonst Fehler auswerfen
+        Dim backupFile As New FileInfo("save/backup.ab")
+        Dim backupFileSize As Long = backupFile.Length
+
+        Return backupFileSize
+    End Function
+
+    Function extractBackup()
+        'apps/ leeren
+        Dim directoryName As String = "apps/"
+        For Each deleteFile In Directory.GetFiles(directoryName, "*", SearchOption.TopDirectoryOnly)
+            File.Delete(deleteFile)
+        Next
+
+        Dim oProcess As New Process()
+        Dim backupOption As String = "-jar abe.jar unpack save/backup.ab save/backup.tar"
+        If pbSchloss.Visible = True Then
+            backupOption = "-jar abe.jar unpack save/backup.ab save/backup.tar 123"
+        End If
+        Dim oStartInfo As New ProcessStartInfo("java", backupOption)
+        oStartInfo.UseShellExecute = False
+        oStartInfo.CreateNoWindow = True
+        oProcess.StartInfo = oStartInfo
+        oProcess.Start()
+        oProcess.WaitForExit()
+
+        Dim oProcess2 As New Process()
+        Dim oStartInfo2 As New ProcessStartInfo("tar.exe", "-xvf save/backup.tar")
+        oStartInfo2.UseShellExecute = False
+        oStartInfo2.CreateNoWindow = True
+        oProcess2.StartInfo = oStartInfo2
+        oProcess2.Start()
+        oProcess2.WaitForExit()
+
+        Dim oProcess4 As New Process()
+        Dim oStartInfo4 As New ProcessStartInfo("list.cmd")
+        oStartInfo4.UseShellExecute = False
+        oStartInfo4.CreateNoWindow = True
+        oProcess4.StartInfo = oStartInfo4
+        oProcess4.Start()
+    End Function
 End Class

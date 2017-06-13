@@ -56,6 +56,7 @@ Partial Class Start
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
         Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
+        Me.cmdGetToken = New System.Windows.Forms.Button()
         Me.ssFooter.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -252,7 +253,6 @@ Partial Class Start
         Me.cmdDebug.TabIndex = 27
         Me.cmdDebug.Text = "Debug"
         Me.cmdDebug.UseVisualStyleBackColor = True
-        Me.cmdDebug.Visible = False
         '
         'LinkLabel1
         '
@@ -284,7 +284,7 @@ Partial Class Start
         '
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(37, 17)
-        Me.lblVersion.Text = "v1.3.3"
+        Me.lblVersion.Text = "v1.3.4"
         '
         'cmdCheckJava
         '
@@ -355,6 +355,15 @@ Partial Class Start
     "spw. C:\Programme\Java\jre1.8.0_121)"
         Me.fdbJava.ShowNewFolderButton = False
         '
+        'cmdGetToken
+        '
+        Me.cmdGetToken.Location = New System.Drawing.Point(165, 194)
+        Me.cmdGetToken.Name = "cmdGetToken"
+        Me.cmdGetToken.Size = New System.Drawing.Size(123, 23)
+        Me.cmdGetToken.TabIndex = 36
+        Me.cmdGetToken.Text = "Token auslesen"
+        Me.cmdGetToken.UseVisualStyleBackColor = True
+        '
         'Start
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,6 +399,7 @@ Partial Class Start
         Me.Controls.Add(Me.lblDevice)
         Me.Controls.Add(Me.cmdCheckConnection)
         Me.Controls.Add(Me.pbSchloss)
+        Me.Controls.Add(Me.cmdGetToken)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -436,4 +446,5 @@ Partial Class Start
     Friend WithEvents txtDeviceAPI As TextBox
     Friend WithEvents pbSchloss As PictureBox
     Friend WithEvents fdbJava As FolderBrowserDialog
+    Friend WithEvents cmdGetToken As Button
 End Class
