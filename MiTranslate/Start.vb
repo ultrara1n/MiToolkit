@@ -336,6 +336,14 @@ Public Class Start
     End Sub
 
     Private Sub cmdGetToken_Click(sender As Object, e As EventArgs) Handles cmdGetToken.Click
+        'Mi Home App starten
+        Dim oProcess2 As New Process()
+        Dim oStartInfo2 As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
+        oStartInfo2.UseShellExecute = False
+        oStartInfo2.CreateNoWindow = True
+        oProcess2.StartInfo = oStartInfo2
+        oProcess2.Start()
+        oProcess2.WaitForExit()
         If doBackup() < 20000000 Then
             MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
         Else
