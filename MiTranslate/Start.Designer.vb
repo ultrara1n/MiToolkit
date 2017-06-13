@@ -54,10 +54,10 @@ Partial Class Start
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtDeviceAndroid = New System.Windows.Forms.TextBox()
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
-        Me.pbSchloss = New System.Windows.Forms.PictureBox()
         Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
         Me.cmdGetToken = New System.Windows.Forms.Button()
         Me.tbToken = New System.Windows.Forms.RichTextBox()
+        Me.pbSchloss = New System.Windows.Forms.PictureBox()
         Me.ssFooter.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -248,6 +248,7 @@ Partial Class Start
         '
         'cmdDebug
         '
+        Me.cmdDebug.Enabled = False
         Me.cmdDebug.Location = New System.Drawing.Point(250, 4)
         Me.cmdDebug.Name = "cmdDebug"
         Me.cmdDebug.Size = New System.Drawing.Size(52, 23)
@@ -284,8 +285,8 @@ Partial Class Start
         'lblVersion
         '
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(37, 17)
-        Me.lblVersion.Text = "v1.3.4"
+        Me.lblVersion.Size = New System.Drawing.Size(28, 17)
+        Me.lblVersion.Text = "v1.4"
         '
         'cmdCheckJava
         '
@@ -339,17 +340,6 @@ Partial Class Start
         Me.txtDeviceAPI.Size = New System.Drawing.Size(133, 20)
         Me.txtDeviceAPI.TabIndex = 34
         '
-        'pbSchloss
-        '
-        Me.pbSchloss.Image = Global.MiToolkit.My.Resources.Resources.schloss
-        Me.pbSchloss.Location = New System.Drawing.Point(214, 112)
-        Me.pbSchloss.Name = "pbSchloss"
-        Me.pbSchloss.Size = New System.Drawing.Size(82, 77)
-        Me.pbSchloss.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbSchloss.TabIndex = 35
-        Me.pbSchloss.TabStop = False
-        Me.pbSchloss.Visible = False
-        '
         'fdbJava
         '
         Me.fdbJava.Description = "Bitte den Ordner der JRE auswählen, dieser befindet sich in deinem Java Ordner (b" &
@@ -374,6 +364,17 @@ Partial Class Start
         Me.tbToken.Size = New System.Drawing.Size(268, 129)
         Me.tbToken.TabIndex = 38
         Me.tbToken.Text = ""
+        '
+        'pbSchloss
+        '
+        Me.pbSchloss.Image = Global.MiToolkit.My.Resources.Resources.schloss
+        Me.pbSchloss.Location = New System.Drawing.Point(214, 112)
+        Me.pbSchloss.Name = "pbSchloss"
+        Me.pbSchloss.Size = New System.Drawing.Size(82, 77)
+        Me.pbSchloss.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbSchloss.TabIndex = 35
+        Me.pbSchloss.TabStop = False
+        Me.pbSchloss.Visible = False
         '
         'Start
         '
