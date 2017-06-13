@@ -5,6 +5,7 @@
 * Videos zur Hilfestellung
 * Überwachung der ADB Verbindung zum Smartphone
 * Unterstützung verschlüsselter Smartphones
+* MiHome Token auslesen
 
 # Erfolgreich getestet auf:
 * OnePlus 3T - Android 7.1.1 (LineageOS 14.1)
