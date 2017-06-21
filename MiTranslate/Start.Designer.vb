@@ -48,6 +48,10 @@ Partial Class Start
         Me.ssFooter = New System.Windows.Forms.StatusStrip()
         Me.lblMitwirkende = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblVersion = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.btOptions = New System.Windows.Forms.ToolStripSplitButton()
+        Me.stsmiAdbVersion = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiStandardVersion = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmi120 = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdCheckJava = New System.Windows.Forms.Button()
         Me.lblDevice = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -248,13 +252,13 @@ Partial Class Start
         '
         'cmdDebug
         '
-        Me.cmdDebug.Enabled = False
         Me.cmdDebug.Location = New System.Drawing.Point(250, 4)
         Me.cmdDebug.Name = "cmdDebug"
         Me.cmdDebug.Size = New System.Drawing.Size(52, 23)
         Me.cmdDebug.TabIndex = 27
         Me.cmdDebug.Text = "Debug"
         Me.cmdDebug.UseVisualStyleBackColor = True
+        Me.cmdDebug.Visible = False
         '
         'LinkLabel1
         '
@@ -268,7 +272,7 @@ Partial Class Start
         '
         'ssFooter
         '
-        Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion})
+        Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion, Me.btOptions})
         Me.ssFooter.Location = New System.Drawing.Point(0, 570)
         Me.ssFooter.Name = "ssFooter"
         Me.ssFooter.Size = New System.Drawing.Size(312, 22)
@@ -286,7 +290,36 @@ Partial Class Start
         '
         Me.lblVersion.Name = "lblVersion"
         Me.lblVersion.Size = New System.Drawing.Size(28, 17)
-        Me.lblVersion.Text = "v1.4"
+        Me.lblVersion.Text = "v1.5"
+        '
+        'btOptions
+        '
+        Me.btOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stsmiAdbVersion})
+        Me.btOptions.Image = CType(resources.GetObject("btOptions.Image"), System.Drawing.Image)
+        Me.btOptions.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btOptions.Name = "btOptions"
+        Me.btOptions.Size = New System.Drawing.Size(73, 20)
+        Me.btOptions.Text = "Optionen"
+        '
+        'stsmiAdbVersion
+        '
+        Me.stsmiAdbVersion.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiStandardVersion, Me.tsmi120})
+        Me.stsmiAdbVersion.Name = "stsmiAdbVersion"
+        Me.stsmiAdbVersion.Size = New System.Drawing.Size(152, 22)
+        Me.stsmiAdbVersion.Text = "ADB Version"
+        '
+        'tsmiStandardVersion
+        '
+        Me.tsmiStandardVersion.Name = "tsmiStandardVersion"
+        Me.tsmiStandardVersion.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiStandardVersion.Text = "Standard ✓"
+        '
+        'tsmi120
+        '
+        Me.tsmi120.Name = "tsmi120"
+        Me.tsmi120.Size = New System.Drawing.Size(152, 22)
+        Me.tsmi120.Text = "1.2.0"
         '
         'cmdCheckJava
         '
@@ -461,4 +494,8 @@ Partial Class Start
     Friend WithEvents fdbJava As FolderBrowserDialog
     Friend WithEvents cmdGetToken As Button
     Friend WithEvents tbToken As RichTextBox
+    Friend WithEvents btOptions As ToolStripSplitButton
+    Friend WithEvents stsmiAdbVersion As ToolStripMenuItem
+    Friend WithEvents tsmiStandardVersion As ToolStripMenuItem
+    Friend WithEvents tsmi120 As ToolStripMenuItem
 End Class

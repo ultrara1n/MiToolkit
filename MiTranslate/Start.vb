@@ -434,4 +434,16 @@ Public Class Start
         oProcess4.StartInfo = oStartInfo4
         oProcess4.Start()
     End Function
+
+    Private Sub tsmi120_Click(sender As Object, e As EventArgs) Handles tsmi120.Click
+        'Auf ADB Version 1.2.0 wechseln
+        tsmiStandardVersion.Text = "Standard"
+        tsmi120.Text = "1.2.0 ✓"
+    End Sub
+
+    Private Sub tsmiStandardVersion_Click(sender As Object, e As EventArgs) Handles tsmiStandardVersion.Click
+        'Auf Standard ADB Version wechseln
+        tsmiStandardVersion.Text = "Standard ✓"
+        tsmi120.Text = "1.2.0"
+    End Sub
 End Class
