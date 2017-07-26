@@ -49,9 +49,12 @@ Partial Class Start
         Me.lblMitwirkende = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblVersion = New System.Windows.Forms.ToolStripStatusLabel()
         Me.btOptions = New System.Windows.Forms.ToolStripSplitButton()
-        Me.stsmiAdbVersion = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiAdbVersion = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiStandardVersion = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmi120 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.EnglischToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeutschToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdCheckJava = New System.Windows.Forms.Button()
         Me.lblDevice = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -60,7 +63,6 @@ Partial Class Start
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
         Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
         Me.cmdGetToken = New System.Windows.Forms.Button()
-        Me.tbToken = New System.Windows.Forms.RichTextBox()
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
         Me.ssFooter.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,353 +70,238 @@ Partial Class Start
         '
         'cmdCheckConnection
         '
-        Me.cmdCheckConnection.Location = New System.Drawing.Point(12, 83)
+        resources.ApplyResources(Me.cmdCheckConnection, "cmdCheckConnection")
         Me.cmdCheckConnection.Name = "cmdCheckConnection"
-        Me.cmdCheckConnection.Size = New System.Drawing.Size(123, 23)
-        Me.cmdCheckConnection.TabIndex = 0
-        Me.cmdCheckConnection.Text = "Verbindung prüfen"
         Me.cmdCheckConnection.UseVisualStyleBackColor = True
         '
         'txtDeviceModel
         '
-        Me.txtDeviceModel.Enabled = False
-        Me.txtDeviceModel.Location = New System.Drawing.Point(75, 112)
+        resources.ApplyResources(Me.txtDeviceModel, "txtDeviceModel")
         Me.txtDeviceModel.Name = "txtDeviceModel"
-        Me.txtDeviceModel.Size = New System.Drawing.Size(133, 20)
-        Me.txtDeviceModel.TabIndex = 2
         '
         'lblIntroduction
         '
-        Me.lblIntroduction.AutoSize = True
+        resources.ApplyResources(Me.lblIntroduction, "lblIntroduction")
         Me.lblIntroduction.BackColor = System.Drawing.Color.Transparent
-        Me.lblIntroduction.Location = New System.Drawing.Point(12, 9)
         Me.lblIntroduction.Name = "lblIntroduction"
-        Me.lblIntroduction.Size = New System.Drawing.Size(230, 65)
-        Me.lblIntroduction.TabIndex = 4
-        Me.lblIntroduction.Text = "Stelle sicher, dass USB-Debugging aktiviert ist" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "und du alle nötigen Gerätetreibe" &
-    "r installiert hast." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Eine Video-Anleitung zum Aktivieren von" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "USB-Debugging gi" &
-    "bt es"
         '
         'cmdGetVersions
         '
-        Me.cmdGetVersions.Location = New System.Drawing.Point(12, 195)
+        resources.ApplyResources(Me.cmdGetVersions, "cmdGetVersions")
         Me.cmdGetVersions.Name = "cmdGetVersions"
-        Me.cmdGetVersions.Size = New System.Drawing.Size(147, 23)
-        Me.cmdGetVersions.TabIndex = 5
-        Me.cmdGetVersions.Text = "Aktuelle Versionen laden"
         Me.cmdGetVersions.UseVisualStyleBackColor = True
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 225)
+        resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(46, 13)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "MiHome"
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(162, 225)
+        resources.ApplyResources(Me.Label2, "Label2")
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(105, 13)
-        Me.Label2.TabIndex = 7
-        Me.Label2.Text = "Vacuum Erweiterung"
         '
         'txtMiHome
         '
-        Me.txtMiHome.Enabled = False
-        Me.txtMiHome.Location = New System.Drawing.Point(12, 241)
+        resources.ApplyResources(Me.txtMiHome, "txtMiHome")
         Me.txtMiHome.Name = "txtMiHome"
-        Me.txtMiHome.Size = New System.Drawing.Size(123, 20)
-        Me.txtMiHome.TabIndex = 8
         '
         'txtErweiterung
         '
-        Me.txtErweiterung.Enabled = False
-        Me.txtErweiterung.Location = New System.Drawing.Point(165, 241)
+        resources.ApplyResources(Me.txtErweiterung, "txtErweiterung")
         Me.txtErweiterung.Name = "txtErweiterung"
-        Me.txtErweiterung.Size = New System.Drawing.Size(123, 20)
-        Me.txtErweiterung.TabIndex = 9
         '
         'pbHome
         '
-        Me.pbHome.Location = New System.Drawing.Point(12, 267)
+        resources.ApplyResources(Me.pbHome, "pbHome")
         Me.pbHome.Name = "pbHome"
-        Me.pbHome.Size = New System.Drawing.Size(123, 23)
-        Me.pbHome.TabIndex = 10
-        Me.pbHome.Visible = False
         '
         'pbErweiterung
         '
-        Me.pbErweiterung.Location = New System.Drawing.Point(165, 267)
+        resources.ApplyResources(Me.pbErweiterung, "pbErweiterung")
         Me.pbErweiterung.Name = "pbErweiterung"
-        Me.pbErweiterung.Size = New System.Drawing.Size(123, 23)
-        Me.pbErweiterung.TabIndex = 11
-        Me.pbErweiterung.Visible = False
         '
         'lblHomeExists
         '
-        Me.lblHomeExists.AutoSize = True
-        Me.lblHomeExists.Location = New System.Drawing.Point(9, 267)
+        resources.ApplyResources(Me.lblHomeExists, "lblHomeExists")
         Me.lblHomeExists.Name = "lblHomeExists"
-        Me.lblHomeExists.Size = New System.Drawing.Size(119, 13)
-        Me.lblHomeExists.TabIndex = 12
-        Me.lblHomeExists.Text = "Bereits heruntergeladen"
-        Me.lblHomeExists.Visible = False
         '
         'lblErweiterungExists
         '
-        Me.lblErweiterungExists.AutoSize = True
-        Me.lblErweiterungExists.Location = New System.Drawing.Point(162, 267)
+        resources.ApplyResources(Me.lblErweiterungExists, "lblErweiterungExists")
         Me.lblErweiterungExists.Name = "lblErweiterungExists"
-        Me.lblErweiterungExists.Size = New System.Drawing.Size(119, 13)
-        Me.lblErweiterungExists.TabIndex = 13
-        Me.lblErweiterungExists.Text = "Bereits heruntergeladen"
-        Me.lblErweiterungExists.Visible = False
         '
         'cmdInstallMiHome
         '
-        Me.cmdInstallMiHome.Location = New System.Drawing.Point(12, 301)
+        resources.ApplyResources(Me.cmdInstallMiHome, "cmdInstallMiHome")
         Me.cmdInstallMiHome.Name = "cmdInstallMiHome"
-        Me.cmdInstallMiHome.Size = New System.Drawing.Size(147, 23)
-        Me.cmdInstallMiHome.TabIndex = 19
-        Me.cmdInstallMiHome.Text = "MiHome App installieren"
         Me.cmdInstallMiHome.UseVisualStyleBackColor = True
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 338)
+        resources.ApplyResources(Me.Label3, "Label3")
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(298, 39)
-        Me.Label3.TabIndex = 20
-        Me.Label3.Text = "Nach erfolgreicher Installation wird sich MiHome automatisch" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "öffnen. Den Roboter" &
-    " öffnen um das aktuelle Plugin zu laden.  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "MiHome sollte für die Sicherung offe" &
-    "n sein!"
         '
         'cmdSicherung
         '
-        Me.cmdSicherung.Location = New System.Drawing.Point(12, 386)
+        resources.ApplyResources(Me.cmdSicherung, "cmdSicherung")
         Me.cmdSicherung.Name = "cmdSicherung"
-        Me.cmdSicherung.Size = New System.Drawing.Size(131, 23)
-        Me.cmdSicherung.TabIndex = 21
-        Me.cmdSicherung.Text = "Sicherung durchführen"
         Me.cmdSicherung.UseVisualStyleBackColor = True
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 422)
+        resources.ApplyResources(Me.Label4, "Label4")
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(300, 39)
-        Me.Label4.TabIndex = 22
-        Me.Label4.Text = "Die Sicherung scheint erfolgreich gewesen zu sein, jetzt kann " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "diese entsprechen" &
-    "d modifiziert und wieder zurück geladen" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "werden"
         '
         'cmdExtract
         '
-        Me.cmdExtract.Location = New System.Drawing.Point(57, 471)
+        resources.ApplyResources(Me.cmdExtract, "cmdExtract")
         Me.cmdExtract.Name = "cmdExtract"
-        Me.cmdExtract.Size = New System.Drawing.Size(205, 23)
-        Me.cmdExtract.TabIndex = 23
-        Me.cmdExtract.Text = "Sicherung extrahieren"
         Me.cmdExtract.UseVisualStyleBackColor = True
         '
         'cmdCopyTranslation
         '
-        Me.cmdCopyTranslation.Location = New System.Drawing.Point(57, 505)
+        resources.ApplyResources(Me.cmdCopyTranslation, "cmdCopyTranslation")
         Me.cmdCopyTranslation.Name = "cmdCopyTranslation"
-        Me.cmdCopyTranslation.Size = New System.Drawing.Size(205, 23)
-        Me.cmdCopyTranslation.TabIndex = 24
-        Me.cmdCopyTranslation.Text = "Übersetzung kopieren und verpacken"
         Me.cmdCopyTranslation.UseVisualStyleBackColor = True
         '
         'cmdRestore
         '
-        Me.cmdRestore.Location = New System.Drawing.Point(57, 539)
+        resources.ApplyResources(Me.cmdRestore, "cmdRestore")
         Me.cmdRestore.Name = "cmdRestore"
-        Me.cmdRestore.Size = New System.Drawing.Size(205, 23)
-        Me.cmdRestore.TabIndex = 25
-        Me.cmdRestore.Text = "Backup zurückspielen"
         Me.cmdRestore.UseVisualStyleBackColor = True
         '
         'cmdForceNext
         '
-        Me.cmdForceNext.Location = New System.Drawing.Point(165, 301)
+        resources.ApplyResources(Me.cmdForceNext, "cmdForceNext")
         Me.cmdForceNext.Name = "cmdForceNext"
-        Me.cmdForceNext.Size = New System.Drawing.Size(123, 23)
-        Me.cmdForceNext.TabIndex = 26
-        Me.cmdForceNext.Text = "Überspringen"
         Me.cmdForceNext.UseVisualStyleBackColor = True
-        Me.cmdForceNext.Visible = False
         '
         'cmdDebug
         '
-        Me.cmdDebug.Location = New System.Drawing.Point(250, 4)
+        resources.ApplyResources(Me.cmdDebug, "cmdDebug")
         Me.cmdDebug.Name = "cmdDebug"
-        Me.cmdDebug.Size = New System.Drawing.Size(52, 23)
-        Me.cmdDebug.TabIndex = 27
-        Me.cmdDebug.Text = "Debug"
         Me.cmdDebug.UseVisualStyleBackColor = True
-        Me.cmdDebug.Visible = False
         '
         'LinkLabel1
         '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(127, 61)
+        resources.ApplyResources(Me.LinkLabel1, "LinkLabel1")
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(24, 13)
-        Me.LinkLabel1.TabIndex = 28
         Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "hier"
         '
         'ssFooter
         '
-        Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion, Me.btOptions})
-        Me.ssFooter.Location = New System.Drawing.Point(0, 570)
+        resources.ApplyResources(Me.ssFooter, "ssFooter")
+        Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion, Me.btOptions, Me.ToolStripDropDownButton1})
         Me.ssFooter.Name = "ssFooter"
-        Me.ssFooter.Size = New System.Drawing.Size(312, 22)
         Me.ssFooter.SizingGrip = False
-        Me.ssFooter.TabIndex = 29
-        Me.ssFooter.Text = "StatusStrip1"
         '
         'lblMitwirkende
         '
+        resources.ApplyResources(Me.lblMitwirkende, "lblMitwirkende")
         Me.lblMitwirkende.Name = "lblMitwirkende"
-        Me.lblMitwirkende.Size = New System.Drawing.Size(73, 17)
-        Me.lblMitwirkende.Text = "Mitwirkende"
         '
         'lblVersion
         '
+        resources.ApplyResources(Me.lblVersion, "lblVersion")
         Me.lblVersion.Name = "lblVersion"
-        Me.lblVersion.Size = New System.Drawing.Size(28, 17)
-        Me.lblVersion.Text = "v1.5"
         '
         'btOptions
         '
+        resources.ApplyResources(Me.btOptions, "btOptions")
         Me.btOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.btOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stsmiAdbVersion})
-        Me.btOptions.Image = CType(resources.GetObject("btOptions.Image"), System.Drawing.Image)
-        Me.btOptions.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAdbVersion})
         Me.btOptions.Name = "btOptions"
-        Me.btOptions.Size = New System.Drawing.Size(73, 20)
-        Me.btOptions.Text = "Optionen"
         '
-        'stsmiAdbVersion
+        'tsmiAdbVersion
         '
-        Me.stsmiAdbVersion.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiStandardVersion, Me.tsmi120})
-        Me.stsmiAdbVersion.Name = "stsmiAdbVersion"
-        Me.stsmiAdbVersion.Size = New System.Drawing.Size(152, 22)
-        Me.stsmiAdbVersion.Text = "ADB Version"
+        resources.ApplyResources(Me.tsmiAdbVersion, "tsmiAdbVersion")
+        Me.tsmiAdbVersion.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiStandardVersion, Me.tsmi120})
+        Me.tsmiAdbVersion.Name = "tsmiAdbVersion"
         '
         'tsmiStandardVersion
         '
+        resources.ApplyResources(Me.tsmiStandardVersion, "tsmiStandardVersion")
         Me.tsmiStandardVersion.Name = "tsmiStandardVersion"
-        Me.tsmiStandardVersion.Size = New System.Drawing.Size(152, 22)
-        Me.tsmiStandardVersion.Text = "Standard ✓"
         '
         'tsmi120
         '
+        resources.ApplyResources(Me.tsmi120, "tsmi120")
         Me.tsmi120.Name = "tsmi120"
-        Me.tsmi120.Size = New System.Drawing.Size(152, 22)
-        Me.tsmi120.Text = "1.2.0"
+        '
+        'ToolStripDropDownButton1
+        '
+        resources.ApplyResources(Me.ToolStripDropDownButton1, "ToolStripDropDownButton1")
+        Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnglischToolStripMenuItem, Me.DeutschToolStripMenuItem})
+        Me.ToolStripDropDownButton1.Image = Global.MiToolkit.My.Resources.Resources.DE
+        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
+        '
+        'EnglischToolStripMenuItem
+        '
+        resources.ApplyResources(Me.EnglischToolStripMenuItem, "EnglischToolStripMenuItem")
+        Me.EnglischToolStripMenuItem.Image = Global.MiToolkit.My.Resources.Resources.US
+        Me.EnglischToolStripMenuItem.Name = "EnglischToolStripMenuItem"
+        '
+        'DeutschToolStripMenuItem
+        '
+        resources.ApplyResources(Me.DeutschToolStripMenuItem, "DeutschToolStripMenuItem")
+        Me.DeutschToolStripMenuItem.Image = Global.MiToolkit.My.Resources.Resources.DE
+        Me.DeutschToolStripMenuItem.Name = "DeutschToolStripMenuItem"
         '
         'cmdCheckJava
         '
-        Me.cmdCheckJava.Location = New System.Drawing.Point(178, 83)
+        resources.ApplyResources(Me.cmdCheckJava, "cmdCheckJava")
         Me.cmdCheckJava.Name = "cmdCheckJava"
-        Me.cmdCheckJava.Size = New System.Drawing.Size(124, 23)
-        Me.cmdCheckJava.TabIndex = 30
-        Me.cmdCheckJava.Text = "Java Installation prüfen"
         Me.cmdCheckJava.UseVisualStyleBackColor = True
         '
         'lblDevice
         '
-        Me.lblDevice.AutoSize = True
-        Me.lblDevice.Location = New System.Drawing.Point(12, 119)
+        resources.ApplyResources(Me.lblDevice, "lblDevice")
         Me.lblDevice.Name = "lblDevice"
-        Me.lblDevice.Size = New System.Drawing.Size(39, 13)
-        Me.lblDevice.TabIndex = 1
-        Me.lblDevice.Text = "Model:"
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 145)
+        resources.ApplyResources(Me.Label5, "Label5")
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(46, 13)
-        Me.Label5.TabIndex = 31
-        Me.Label5.Text = "Android:"
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 171)
+        resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(56, 13)
-        Me.Label6.TabIndex = 32
-        Me.Label6.Text = "API Level:"
         '
         'txtDeviceAndroid
         '
-        Me.txtDeviceAndroid.Enabled = False
-        Me.txtDeviceAndroid.Location = New System.Drawing.Point(75, 138)
+        resources.ApplyResources(Me.txtDeviceAndroid, "txtDeviceAndroid")
         Me.txtDeviceAndroid.Name = "txtDeviceAndroid"
-        Me.txtDeviceAndroid.Size = New System.Drawing.Size(133, 20)
-        Me.txtDeviceAndroid.TabIndex = 33
         '
         'txtDeviceAPI
         '
-        Me.txtDeviceAPI.Enabled = False
-        Me.txtDeviceAPI.Location = New System.Drawing.Point(75, 168)
+        resources.ApplyResources(Me.txtDeviceAPI, "txtDeviceAPI")
         Me.txtDeviceAPI.Name = "txtDeviceAPI"
-        Me.txtDeviceAPI.Size = New System.Drawing.Size(133, 20)
-        Me.txtDeviceAPI.TabIndex = 34
         '
         'fdbJava
         '
-        Me.fdbJava.Description = "Bitte den Ordner der JRE auswählen, dieser befindet sich in deinem Java Ordner (b" &
-    "spw. C:\Programme\Java\jre1.8.0_121)"
+        resources.ApplyResources(Me.fdbJava, "fdbJava")
         Me.fdbJava.ShowNewFolderButton = False
         '
         'cmdGetToken
         '
-        Me.cmdGetToken.Location = New System.Drawing.Point(165, 194)
+        resources.ApplyResources(Me.cmdGetToken, "cmdGetToken")
         Me.cmdGetToken.Name = "cmdGetToken"
-        Me.cmdGetToken.Size = New System.Drawing.Size(123, 23)
-        Me.cmdGetToken.TabIndex = 36
-        Me.cmdGetToken.Text = "Token auslesen"
         Me.cmdGetToken.UseVisualStyleBackColor = True
-        '
-        'tbToken
-        '
-        Me.tbToken.Location = New System.Drawing.Point(321, 89)
-        Me.tbToken.Name = "tbToken"
-        Me.tbToken.ReadOnly = True
-        Me.tbToken.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None
-        Me.tbToken.Size = New System.Drawing.Size(268, 129)
-        Me.tbToken.TabIndex = 38
-        Me.tbToken.Text = ""
         '
         'pbSchloss
         '
+        resources.ApplyResources(Me.pbSchloss, "pbSchloss")
         Me.pbSchloss.Image = Global.MiToolkit.My.Resources.Resources.schloss
-        Me.pbSchloss.Location = New System.Drawing.Point(214, 112)
         Me.pbSchloss.Name = "pbSchloss"
-        Me.pbSchloss.Size = New System.Drawing.Size(82, 77)
-        Me.pbSchloss.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbSchloss.TabIndex = 35
         Me.pbSchloss.TabStop = False
-        Me.pbSchloss.Visible = False
         '
         'Start
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(312, 592)
-        Me.Controls.Add(Me.tbToken)
         Me.Controls.Add(Me.txtDeviceAPI)
         Me.Controls.Add(Me.txtDeviceAndroid)
         Me.Controls.Add(Me.Label6)
@@ -447,10 +334,8 @@ Partial Class Start
         Me.Controls.Add(Me.pbSchloss)
         Me.Controls.Add(Me.cmdGetToken)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "Start"
-        Me.Text = "MiToolkit"
         Me.ssFooter.ResumeLayout(False)
         Me.ssFooter.PerformLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).EndInit()
@@ -493,9 +378,11 @@ Partial Class Start
     Friend WithEvents pbSchloss As PictureBox
     Friend WithEvents fdbJava As FolderBrowserDialog
     Friend WithEvents cmdGetToken As Button
-    Friend WithEvents tbToken As RichTextBox
     Friend WithEvents btOptions As ToolStripSplitButton
-    Friend WithEvents stsmiAdbVersion As ToolStripMenuItem
+    Friend WithEvents tsmiAdbVersion As ToolStripMenuItem
     Friend WithEvents tsmiStandardVersion As ToolStripMenuItem
     Friend WithEvents tsmi120 As ToolStripMenuItem
+    Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
+    Friend WithEvents EnglischToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeutschToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports Microsoft.Win32
+Imports System.Globalization
+Imports System.Threading
 
 Public Class Start
     Private Sub cmdCheckConnection_Click(sender As Object, e As EventArgs) Handles cmdCheckConnection.Click
@@ -107,6 +109,17 @@ Public Class Start
     End Sub
     Dim WithEvents wcHome As New WebClient
     Dim WithEvents wcVacuum As New WebClient
+
+    Public Sub New()
+        'Sprache setzen
+        Thread.CurrentThread.CurrentUICulture = New CultureInfo(My.Settings.language)
+        ' Dieser Aufruf ist für den Designer erforderlich.
+        InitializeComponent()
+
+        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
+
+    End Sub
+
     Private Sub cmdGetVersions_Click(sender As Object, e As EventArgs) Handles cmdGetVersions.Click
         Dim homeapp() As String
         Dim vacuum() As String
@@ -446,4 +459,14 @@ Public Class Start
         tsmiStandardVersion.Text = "Standard ✓"
         tsmi120.Text = "1.2.0"
     End Sub
+
+    Private Sub DeutschToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeutschToolStripMenuItem.Click
+        System.Windows.Forms.Application.Restart()
+    End Sub
+
+    Private Sub EnglischToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EnglischToolStripMenuItem.Click
+        My.Settings.language = "en"
+        System.Windows.Forms.Application.Restart()
+    End Sub
 End Class
+

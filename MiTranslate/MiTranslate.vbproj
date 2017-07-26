@@ -148,6 +148,12 @@
     <EmbeddedResource Include="showToken.resx">
       <DependentUpon>showToken.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Start.de.resx">
+      <DependentUpon>Start.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Start.en.resx">
+      <DependentUpon>Start.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.vb</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +181,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mi-logo.ico" />
+    <None Include="Resources\US.png" />
+    <None Include="Resources\DE.png" />
     <None Include="packages.config" />
     <None Include="Resources\schloss.png" />
     <None Include="Resources\header.jpg" />
