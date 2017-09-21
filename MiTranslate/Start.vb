@@ -4,7 +4,7 @@ Imports Microsoft.Win32
 Imports System.Globalization
 Imports System.Threading
 
-Public Class Start
+Public Class frmTranslation
     Private Sub cmdCheckConnection_Click(sender As Object, e As EventArgs) Handles cmdCheckConnection.Click
         Dim adbResult As String = checkADB()
 
@@ -105,26 +105,16 @@ Public Class Start
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Height = 255
+        Me.Height = 234
     End Sub
     Dim WithEvents wcHome As New WebClient
     Dim WithEvents wcVacuum As New WebClient
-
-    Public Sub New()
-        'Sprache setzen
-        Thread.CurrentThread.CurrentUICulture = New CultureInfo(My.Settings.language)
-        ' Dieser Aufruf ist für den Designer erforderlich.
-        InitializeComponent()
-
-        ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-
-    End Sub
 
     Private Sub cmdGetVersions_Click(sender As Object, e As EventArgs) Handles cmdGetVersions.Click
         Dim homeapp() As String
         Dim vacuum() As String
         Using client = New WebClient()
-            Dim result() As String = Split(client.DownloadString("https://philippwensauer.com/mi/versions.txt?v=" & lblVersion.Text), vbCrLf)
+            Dim result() As String = Split(client.DownloadString("https://philippwensauer.com/mi/versions.txt?v=" & frmStart.lblVersion.Text), vbCrLf)
             homeapp = Split(result(0), ";")
             vacuum = Split(result(1), ";")
         End Using
@@ -164,7 +154,7 @@ Public Class Start
             wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & vacuum(3)), "apk/" & vacuum(3))
         End If
         If lblErweiterungExists.Visible = True And lblHomeExists.Visible = True Then
-            Me.Height = 397
+            Me.Height = 335
         End If
     End Sub
     Private Sub wcHome_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles wcHome.DownloadProgressChanged
@@ -279,7 +269,7 @@ Public Class Start
         oProcess2.Start()
         oProcess2.WaitForExit()
 
-        Me.Height = 631
+        Me.Height = 610
     End Sub
 
     Private Sub cmdRestore_Click(sender As Object, e As EventArgs) Handles cmdRestore.Click
@@ -323,7 +313,7 @@ Public Class Start
     End Sub
 
     Private Sub cmdDebug_Click(sender As Object, e As EventArgs) Handles cmdDebug.Click
-        Me.Height = 631
+        Me.Height = 610
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
@@ -333,11 +323,6 @@ Public Class Start
         Me.Enabled = False
     End Sub
 
-    Private Sub lblMitwirkende_Click(sender As Object, e As EventArgs) Handles lblMitwirkende.Click
-        MsgBox("Der größte Dank geht an Henne78 für seine Übersetzungsarbeit!" & vbCrLf &
-               "Danke an SlaveofPain für sein Batch-Übersetzungstool!" & vbCrLf &
-               "Programmiert von blacksn0w.")
-    End Sub
     Private Sub cmdCheckJava_Click(sender As Object, e As EventArgs) Handles cmdCheckJava.Click
         checkJava()
         If (globalData.javaInfo = "ERROR") Then
@@ -448,25 +433,8 @@ Public Class Start
         oProcess4.Start()
     End Function
 
-    Private Sub tsmi120_Click(sender As Object, e As EventArgs) Handles tsmi120.Click
-        'Auf ADB Version 1.2.0 wechseln
-        tsmiStandardVersion.Text = "Standard"
-        tsmi120.Text = "1.2.0 ✓"
-    End Sub
-
-    Private Sub tsmiStandardVersion_Click(sender As Object, e As EventArgs) Handles tsmiStandardVersion.Click
-        'Auf Standard ADB Version wechseln
-        tsmiStandardVersion.Text = "Standard ✓"
-        tsmi120.Text = "1.2.0"
-    End Sub
-
-    Private Sub DeutschToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeutschToolStripMenuItem.Click
-        System.Windows.Forms.Application.Restart()
-    End Sub
-
-    Private Sub EnglischToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EnglischToolStripMenuItem.Click
-        My.Settings.language = "en"
-        System.Windows.Forms.Application.Restart()
+    Private Sub frmTranslation_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        frmStart.Enabled = True
     End Sub
 End Class
 

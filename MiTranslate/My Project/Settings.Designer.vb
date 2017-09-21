@@ -65,6 +65,18 @@ Namespace My
                 Me("language") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("36")>  _
+        Public Property adb() As String
+            Get
+                Return CType(Me("adb"),String)
+            End Get
+            Set
+                Me("adb") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

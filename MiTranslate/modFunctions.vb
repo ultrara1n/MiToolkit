@@ -35,7 +35,7 @@ Module modFunctions
     Function checkADB()
         'Prüfen ob ADB Gerät immer noch verbunden ist
         Dim processCheckADB As New Process()
-        Dim infoCheckADB As New ProcessStartInfo("adb/adb.exe", "devices -l")
+        Dim infoCheckADB As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "devices -l")
         With infoCheckADB
             .UseShellExecute = False
             .CreateNoWindow = True
@@ -62,7 +62,7 @@ Module modFunctions
 
     Function getADBInfos()
         Dim processDeviceInformation As New Process()
-        Dim infoDeviceInformation As New ProcessStartInfo("adb/adb.exe", "shell getprop")
+        Dim infoDeviceInformation As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "shell getprop")
         With infoDeviceInformation
             .UseShellExecute = False
             .CreateNoWindow = True

@@ -5,5 +5,8 @@
     <Setting Name="language" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="adb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">36</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

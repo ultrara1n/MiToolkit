@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Start
+Partial Class frmTranslation
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Start
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Start))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTranslation))
         Me.cmdCheckConnection = New System.Windows.Forms.Button()
         Me.txtDeviceModel = New System.Windows.Forms.TextBox()
         Me.lblIntroduction = New System.Windows.Forms.Label()
@@ -45,16 +45,6 @@ Partial Class Start
         Me.cmdForceNext = New System.Windows.Forms.Button()
         Me.cmdDebug = New System.Windows.Forms.Button()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.ssFooter = New System.Windows.Forms.StatusStrip()
-        Me.lblMitwirkende = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblVersion = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.btOptions = New System.Windows.Forms.ToolStripSplitButton()
-        Me.tsmiAdbVersion = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiStandardVersion = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmi120 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.EnglischToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeutschToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdCheckJava = New System.Windows.Forms.Button()
         Me.lblDevice = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -64,7 +54,6 @@ Partial Class Start
         Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
         Me.cmdGetToken = New System.Windows.Forms.Button()
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
-        Me.ssFooter.SuspendLayout()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -189,66 +178,6 @@ Partial Class Start
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.TabStop = True
         '
-        'ssFooter
-        '
-        resources.ApplyResources(Me.ssFooter, "ssFooter")
-        Me.ssFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblMitwirkende, Me.lblVersion, Me.btOptions, Me.ToolStripDropDownButton1})
-        Me.ssFooter.Name = "ssFooter"
-        Me.ssFooter.SizingGrip = False
-        '
-        'lblMitwirkende
-        '
-        resources.ApplyResources(Me.lblMitwirkende, "lblMitwirkende")
-        Me.lblMitwirkende.Name = "lblMitwirkende"
-        '
-        'lblVersion
-        '
-        resources.ApplyResources(Me.lblVersion, "lblVersion")
-        Me.lblVersion.Name = "lblVersion"
-        '
-        'btOptions
-        '
-        resources.ApplyResources(Me.btOptions, "btOptions")
-        Me.btOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.btOptions.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAdbVersion})
-        Me.btOptions.Name = "btOptions"
-        '
-        'tsmiAdbVersion
-        '
-        resources.ApplyResources(Me.tsmiAdbVersion, "tsmiAdbVersion")
-        Me.tsmiAdbVersion.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiStandardVersion, Me.tsmi120})
-        Me.tsmiAdbVersion.Name = "tsmiAdbVersion"
-        '
-        'tsmiStandardVersion
-        '
-        resources.ApplyResources(Me.tsmiStandardVersion, "tsmiStandardVersion")
-        Me.tsmiStandardVersion.Name = "tsmiStandardVersion"
-        '
-        'tsmi120
-        '
-        resources.ApplyResources(Me.tsmi120, "tsmi120")
-        Me.tsmi120.Name = "tsmi120"
-        '
-        'ToolStripDropDownButton1
-        '
-        resources.ApplyResources(Me.ToolStripDropDownButton1, "ToolStripDropDownButton1")
-        Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnglischToolStripMenuItem, Me.DeutschToolStripMenuItem})
-        Me.ToolStripDropDownButton1.Image = Global.MiToolkit.My.Resources.Resources.DE
-        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
-        '
-        'EnglischToolStripMenuItem
-        '
-        resources.ApplyResources(Me.EnglischToolStripMenuItem, "EnglischToolStripMenuItem")
-        Me.EnglischToolStripMenuItem.Image = Global.MiToolkit.My.Resources.Resources.US
-        Me.EnglischToolStripMenuItem.Name = "EnglischToolStripMenuItem"
-        '
-        'DeutschToolStripMenuItem
-        '
-        resources.ApplyResources(Me.DeutschToolStripMenuItem, "DeutschToolStripMenuItem")
-        Me.DeutschToolStripMenuItem.Image = Global.MiToolkit.My.Resources.Resources.DE
-        Me.DeutschToolStripMenuItem.Name = "DeutschToolStripMenuItem"
-        '
         'cmdCheckJava
         '
         resources.ApplyResources(Me.cmdCheckJava, "cmdCheckJava")
@@ -298,7 +227,7 @@ Partial Class Start
         Me.pbSchloss.Name = "pbSchloss"
         Me.pbSchloss.TabStop = False
         '
-        'Start
+        'frmTranslation
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -307,7 +236,6 @@ Partial Class Start
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.cmdCheckJava)
-        Me.Controls.Add(Me.ssFooter)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.cmdDebug)
         Me.Controls.Add(Me.cmdForceNext)
@@ -335,9 +263,7 @@ Partial Class Start
         Me.Controls.Add(Me.cmdGetToken)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "Start"
-        Me.ssFooter.ResumeLayout(False)
-        Me.ssFooter.PerformLayout()
+        Me.Name = "frmTranslation"
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -366,9 +292,6 @@ Partial Class Start
     Friend WithEvents cmdForceNext As Button
     Friend WithEvents cmdDebug As Button
     Friend WithEvents LinkLabel1 As LinkLabel
-    Friend WithEvents ssFooter As StatusStrip
-    Friend WithEvents lblMitwirkende As ToolStripStatusLabel
-    Friend WithEvents lblVersion As ToolStripStatusLabel
     Friend WithEvents cmdCheckJava As Button
     Friend WithEvents lblDevice As Label
     Friend WithEvents Label5 As Label
@@ -378,11 +301,4 @@ Partial Class Start
     Friend WithEvents pbSchloss As PictureBox
     Friend WithEvents fdbJava As FolderBrowserDialog
     Friend WithEvents cmdGetToken As Button
-    Friend WithEvents btOptions As ToolStripSplitButton
-    Friend WithEvents tsmiAdbVersion As ToolStripMenuItem
-    Friend WithEvents tsmiStandardVersion As ToolStripMenuItem
-    Friend WithEvents tsmi120 As ToolStripMenuItem
-    Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
-    Friend WithEvents EnglischToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DeutschToolStripMenuItem As ToolStripMenuItem
 End Class
