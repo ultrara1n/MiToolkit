@@ -133,14 +133,15 @@
   <data name="&gt;&gt;lblMitwirkende.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmi120.Name" xml:space="preserve">
-    <value>tsmi120</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cmdForceNext.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pbSchloss.ZOrder" xml:space="preserve">
-    <value>28</value>
+  <data name="cmdCheckConnection.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="cmdGetVersions.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 23</value>
@@ -191,6 +192,9 @@
   <data name="&gt;&gt;cmdForceNext.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="Label5.Text" xml:space="preserve">
+    <value>Android:</value>
+  </data>
   <data name="tsmiStandardVersion.Text" xml:space="preserve">
     <value>Standard ✓</value>
   </data>
@@ -212,7 +216,6 @@
   <data name="&gt;&gt;cmdGetVersions.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cmdForceNext.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
@@ -279,6 +282,9 @@
   <data name="&gt;&gt;Label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cmdGetToken.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="lblMitwirkende.Text" xml:space="preserve">
     <value>Mitwirkende</value>
   </data>
@@ -315,8 +321,8 @@
   <data name="tsmiAdbVersion.Text" xml:space="preserve">
     <value>ADB Version</value>
   </data>
-  <data name="cmdForceNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 301</value>
+  <data name="&gt;&gt;Label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -488,9 +494,6 @@ MiHome sollte für die Sicherung offen sein!</value>
   <data name="ssFooter.Text" xml:space="preserve">
     <value>StatusStrip1</value>
   </data>
-  <data name="&gt;&gt;cmdCheckConnection.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="cmdCopyTranslation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -515,17 +518,17 @@ MiHome sollte für die Sicherung offen sein!</value>
   <data name="&gt;&gt;txtErweiterung.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="lblHomeExists.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtDeviceModel.Name" xml:space="preserve">
-    <value>txtDeviceModel</value>
+  <data name="cmdExtract.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="LinkLabel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>127, 61</value>
   </data>
   <data name="txtErweiterung.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
+  </data>
+  <data name="cmdForceNext.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 301</value>
   </data>
   <data name="cmdDebug.Location" type="System.Drawing.Point, System.Drawing">
     <value>250, 4</value>
@@ -554,6 +557,9 @@ MiHome sollte für die Sicherung offen sein!</value>
   <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;tsmi120.Name" xml:space="preserve">
+    <value>tsmi120</value>
+  </data>
   <data name="pbErweiterung.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
@@ -577,9 +583,6 @@ MiHome sollte für die Sicherung offen sein!</value>
   </data>
   <data name="pbErweiterung.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="cmdCheckConnection.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;cmdCheckConnection.Name" xml:space="preserve">
     <value>cmdCheckConnection</value>
@@ -626,8 +629,8 @@ MiHome sollte für die Sicherung offen sein!</value>
   <data name="lblIntroduction.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="EnglischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+  <data name="&gt;&gt;lblErweiterungExists.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="cmdSicherung.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -653,8 +656,8 @@ MiHome sollte für die Sicherung offen sein!</value>
   <data name="pbErweiterung.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 23</value>
   </data>
-  <data name="Label6.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+  <data name="&gt;&gt;cmdCheckConnection.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="lblHomeExists.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 267</value>
@@ -6882,15 +6885,6 @@ MiHome sollte für die Sicherung offen sein!</value>
   <data name="&gt;&gt;txtMiHome.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="txtDeviceAPI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 20</value>
-  </data>
-  <data name="cmdCheckConnection.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblDevice.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
   <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
@@ -6923,6 +6917,9 @@ MiHome sollte für die Sicherung offen sein!</value>
   </data>
   <data name="cmdInstallMiHome.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
+  </data>
+  <data name="&gt;&gt;pbSchloss.ZOrder" xml:space="preserve">
+    <value>28</value>
   </data>
   <data name="cmdInstallMiHome.Text" xml:space="preserve">
     <value>MiHome App installieren</value>
@@ -6965,14 +6962,14 @@ werden</value>
   <data name="cmdInstallMiHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 23</value>
   </data>
+  <data name="EnglischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
   <data name="&gt;&gt;cmdCheckJava.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbHome.Type" xml:space="preserve">
     <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cmdForceNext.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmTranslation</value>
@@ -7001,8 +6998,11 @@ werden</value>
   <data name="lblIntroduction.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 65</value>
   </data>
-  <data name="&gt;&gt;cmdGetToken.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="cmdCheckConnection.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;fdbJava.Name" xml:space="preserve">
+    <value>fdbJava</value>
   </data>
   <data name="cmdCheckConnection.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 23</value>
@@ -7038,9 +7038,6 @@ und du alle nötigen Gerätetreiber installiert hast.
 Eine Video-Anleitung zum Aktivieren von
 USB-Debugging gibt es</value>
   </data>
-  <data name="Label2.Text" xml:space="preserve">
-    <value>Vacuum Erweiterung</value>
-  </data>
   <data name="Label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7065,8 +7062,8 @@ USB-Debugging gibt es</value>
   <data name="pbSchloss.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 77</value>
   </data>
-  <data name="cmdExtract.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lblHomeExists.Text" xml:space="preserve">
+    <value>Bereits heruntergeladen</value>
   </data>
   <data name="&gt;&gt;cmdForceNext.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -7082,6 +7079,9 @@ USB-Debugging gibt es</value>
   </data>
   <data name="&gt;&gt;cmdRestore.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Label6.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
   </data>
   <data name="pbHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 267</value>
@@ -7152,8 +7152,11 @@ USB-Debugging gibt es</value>
   <data name="txtDeviceModel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 39</value>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>Vacuum Erweiterung</value>
+  </data>
+  <data name="&gt;&gt;txtDeviceModel.Name" xml:space="preserve">
+    <value>txtDeviceModel</value>
   </data>
   <data name="&gt;&gt;Label2.Name" xml:space="preserve">
     <value>Label2</value>
@@ -7173,9 +7176,6 @@ USB-Debugging gibt es</value>
   <data name="cmdGetToken.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
   </data>
-  <data name="&gt;&gt;Label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="cmdSicherung.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -7185,8 +7185,8 @@ USB-Debugging gibt es</value>
   <data name="cmdCopyTranslation.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 23</value>
   </data>
-  <data name="lblHomeExists.Text" xml:space="preserve">
-    <value>Bereits heruntergeladen</value>
+  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 39</value>
   </data>
   <data name="&gt;&gt;cmdInstallMiHome.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -7215,8 +7215,8 @@ USB-Debugging gibt es</value>
   <data name="&gt;&gt;ssFooter.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblErweiterungExists.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="lblHomeExists.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="cmdSicherung.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 386</value>
@@ -7275,8 +7275,8 @@ USB-Debugging gibt es</value>
   <data name="cmdDebug.Text" xml:space="preserve">
     <value>Debug</value>
   </data>
-  <data name="Label5.Text" xml:space="preserve">
-    <value>Android:</value>
+  <data name="txtDeviceAPI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 20</value>
   </data>
   <data name="&gt;&gt;cmdInstallMiHome.Name" xml:space="preserve">
     <value>cmdInstallMiHome</value>
@@ -7302,12 +7302,9 @@ USB-Debugging gibt es</value>
   <data name="cmdCheckJava.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;fdbJava.Name" xml:space="preserve">
-    <value>fdbJava</value>
+  <data name="&gt;&gt;lblDevice.ZOrder" xml:space="preserve">
+    <value>26</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

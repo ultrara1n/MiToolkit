@@ -127,12 +127,6 @@
       <DependentUpon>Start.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Help.Designer.vb">
-      <DependentUpon>Help.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Help.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="modFunctions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -160,17 +154,11 @@
     <EmbeddedResource Include="showToken.resx">
       <DependentUpon>showToken.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Start.de.resx">
-      <DependentUpon>Start.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Start.en.resx">
       <DependentUpon>Start.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Help.resx">
-      <DependentUpon>Help.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -200,14 +188,6 @@
     <None Include="Resources\header.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AxShockwaveFlashObjects">
-      <Guid>{D27CDB6B-AE6D-11CF-96B8-444553540000}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
     <COMReference Include="ShockwaveFlashObjects">
       <Guid>{D27CDB6B-AE6D-11CF-96B8-444553540000}</Guid>
       <VersionMajor>1</VersionMajor>

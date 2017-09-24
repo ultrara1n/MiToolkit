@@ -189,25 +189,25 @@
     <value>v1.5</value>
   </data>
   <data name="lblADB32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="lblADB32.Text" xml:space="preserve">
     <value>32</value>
   </data>
   <data name="lblADB36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="lblADB36.Text" xml:space="preserve">
     <value>36</value>
   </data>
   <data name="lblADB39.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>86, 22</value>
   </data>
   <data name="lblADB39.Text" xml:space="preserve">
     <value>39</value>
   </data>
   <data name="ADBVersionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>138, 22</value>
   </data>
   <data name="ADBVersionToolStripMenuItem.Text" xml:space="preserve">
     <value>ADB Version</value>
@@ -235,6 +235,18 @@
   </data>
   <data name="ToolStripDropDownButton2.Text" xml:space="preserve">
     <value>Optionen</value>
+  </data>
+  <data name="EnglischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="EnglischToolStripMenuItem.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="DeutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="DeutschToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deutsch</value>
   </data>
   <data name="btnLanguage.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -268,18 +280,6 @@
   </data>
   <data name="&gt;&gt;StatusStrip1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="EnglischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="EnglischToolStripMenuItem.Text" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="DeutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="DeutschToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deutsch</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
