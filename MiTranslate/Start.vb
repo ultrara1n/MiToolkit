@@ -328,7 +328,7 @@ Public Class frmTranslation
         End If
     End Sub
 
-    Private Sub cmdGetToken_Click(sender As Object, e As EventArgs) Handles cmdGetToken.Click
+    Private Sub cmdGetToken_Click(sender As Object, e As EventArgs)
         'Mi Home App starten
         Dim oProcess2 As New Process()
         Dim oStartInfo2 As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")

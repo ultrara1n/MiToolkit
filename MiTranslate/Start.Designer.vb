@@ -52,7 +52,6 @@ Partial Class frmTranslation
         Me.txtDeviceAndroid = New System.Windows.Forms.TextBox()
         Me.txtDeviceAPI = New System.Windows.Forms.TextBox()
         Me.fdbJava = New System.Windows.Forms.FolderBrowserDialog()
-        Me.cmdGetToken = New System.Windows.Forms.Button()
         Me.pbSchloss = New System.Windows.Forms.PictureBox()
         CType(Me.pbSchloss, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -214,16 +213,10 @@ Partial Class frmTranslation
         resources.ApplyResources(Me.fdbJava, "fdbJava")
         Me.fdbJava.ShowNewFolderButton = False
         '
-        'cmdGetToken
-        '
-        resources.ApplyResources(Me.cmdGetToken, "cmdGetToken")
-        Me.cmdGetToken.Name = "cmdGetToken"
-        Me.cmdGetToken.UseVisualStyleBackColor = True
-        '
         'pbSchloss
         '
-        resources.ApplyResources(Me.pbSchloss, "pbSchloss")
         Me.pbSchloss.Image = Global.MiToolkit.My.Resources.Resources.schloss
+        resources.ApplyResources(Me.pbSchloss, "pbSchloss")
         Me.pbSchloss.Name = "pbSchloss"
         Me.pbSchloss.TabStop = False
         '
@@ -260,7 +253,6 @@ Partial Class frmTranslation
         Me.Controls.Add(Me.lblDevice)
         Me.Controls.Add(Me.cmdCheckConnection)
         Me.Controls.Add(Me.pbSchloss)
-        Me.Controls.Add(Me.cmdGetToken)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "frmTranslation"
@@ -300,5 +292,4 @@ Partial Class frmTranslation
     Friend WithEvents txtDeviceAPI As TextBox
     Friend WithEvents pbSchloss As PictureBox
     Friend WithEvents fdbJava As FolderBrowserDialog
-    Friend WithEvents cmdGetToken As Button
 End Class
