@@ -133,10 +133,22 @@ Module modFunctions
             File.Delete(deleteFile)
         Next
 
+        Dim strBackupEncrypted As String
+        Dim strBackupNormal As String
         If frmTranslation.pbSchloss.Visible = True Then
-            MsgBox("Als Passwort 123 eingeben!", MsgBoxStyle.Information)
+            If My.Settings.language = "de" Then
+                strBackupEncrypted = "Als Passwort 123 eingeben!"
+            ElseIf My.Settings.language = "en" Then
+                strBackupEncrypted = "Use 123 as password!"
+            End If
+            MsgBox(strBackupEncrypted, MsgBoxStyle.Information)
         Else
-            MsgBox("Bei der Sicherung KEIN Passwort vergeben!")
+            If My.Settings.language = "de" Then
+                strBackupNormal = "Bei der Sicherung KEIN Passwort vergeben!"
+            ElseIf My.Settings.language = "en" Then
+                strBackupNormal = "Don't set a password for the backup!"
+            End If
+            MsgBox(strBackupNormal)
         End If
 
         'Sicherung starten

@@ -30,44 +30,30 @@ Partial Class frmToken
         '
         'cmdGetToken
         '
-        Me.cmdGetToken.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdGetToken.Location = New System.Drawing.Point(112, 215)
+        resources.ApplyResources(Me.cmdGetToken, "cmdGetToken")
         Me.cmdGetToken.Name = "cmdGetToken"
-        Me.cmdGetToken.Size = New System.Drawing.Size(189, 35)
-        Me.cmdGetToken.TabIndex = 0
-        Me.cmdGetToken.Text = "Token auslesen"
         Me.cmdGetToken.UseVisualStyleBackColor = True
         '
         'lblDescription
         '
-        Me.lblDescription.AutoSize = True
-        Me.lblDescription.Location = New System.Drawing.Point(12, 9)
+        resources.ApplyResources(Me.lblDescription, "lblDescription")
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(380, 182)
-        Me.lblDescription.TabIndex = 1
-        Me.lblDescription.Text = resources.GetString("lblDescription.Text")
         '
         'tbToken
         '
-        Me.tbToken.Location = New System.Drawing.Point(12, 267)
-        Me.tbToken.Multiline = True
+        resources.ApplyResources(Me.tbToken, "tbToken")
         Me.tbToken.Name = "tbToken"
-        Me.tbToken.Size = New System.Drawing.Size(436, 169)
-        Me.tbToken.TabIndex = 2
         '
         'frmToken
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 453)
         Me.Controls.Add(Me.tbToken)
         Me.Controls.Add(Me.lblDescription)
         Me.Controls.Add(Me.cmdGetToken)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmToken"
-        Me.Text = "MiToolkit"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

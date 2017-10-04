@@ -120,12 +120,6 @@
     <Compile Include="frmToken.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="showToken.Designer.vb">
-      <DependentUpon>showToken.vb</DependentUpon>
-    </Compile>
-    <Compile Include="showToken.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Start.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -157,11 +151,11 @@
     <EmbeddedResource Include="frmStart.resx">
       <DependentUpon>frmStart.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmToken.resx">
+    <EmbeddedResource Include="frmToken.en.resx">
       <DependentUpon>frmToken.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="showToken.resx">
-      <DependentUpon>showToken.vb</DependentUpon>
+    <EmbeddedResource Include="frmToken.resx">
+      <DependentUpon>frmToken.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Start.en.resx">
       <DependentUpon>Start.vb</DependentUpon>

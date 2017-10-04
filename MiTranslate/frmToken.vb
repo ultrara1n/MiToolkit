@@ -13,9 +13,21 @@
         oProcess2.Start()
         oProcess2.WaitForExit()
         If doBackup() < 20000000 Then
-            MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
+            Dim strBackupError As String
+            If My.Settings.language = "de" Then
+                strBackupError = "Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein."
+            ElseIf My.Settings.language = "en" Then
+                strBackupError = "There seems to be an error with the backup, it is way too small."
+            End If
+            MsgBox(strBackupError)
         Else
-            MsgBox("Backup erfolgreich, wird jetzt entpackt.")
+            Dim strBackupExtract As String
+            If My.Settings.language = "de" Then
+                strBackupExtract = "Backup erfolgreich, wird jetzt entpackt."
+            ElseIf My.Settings.language = "en" Then
+                strBackupExtract = "Backup successful, starting extraction."
+            End If
+            MsgBox(strBackupExtract)
             extractBackup()
             Dim connect As New SQLite.SQLiteConnection()
             Dim command As SQLite.SQLiteCommand

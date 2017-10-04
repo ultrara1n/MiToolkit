@@ -131,11 +131,11 @@
     <value>Extract Token</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ToolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
+  <data name="lblContributors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 17</value>
   </data>
-  <data name="ToolStripStatusLabel1.Text" xml:space="preserve">
-    <value>Contributors</value>
+  <data name="lblContributors.Text" xml:space="preserve">
+    <value>Credits</value>
   </data>
   <data name="ToolStripDropDownButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

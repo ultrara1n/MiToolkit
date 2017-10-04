@@ -100,7 +100,7 @@ Public Class frmTranslation
                 End If
             Else
             End If
-            Me.Height = 361
+            Me.Height = 340
         End If
     End Sub
 
@@ -154,7 +154,7 @@ Public Class frmTranslation
             wcVacuum.DownloadFileAsync(New Uri("https://philippwensauer.com/mi/" & vacuum(3)), "apk/" & vacuum(3))
         End If
         If lblErweiterungExists.Visible = True And lblHomeExists.Visible = True Then
-            Me.Height = 335
+            Me.Height = 373
         End If
     End Sub
     Private Sub wcHome_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles wcHome.DownloadProgressChanged
@@ -169,7 +169,7 @@ Public Class frmTranslation
         If (globalData.homeMD5 <> MD5FileHash("apk/" & globalData.homeVersion)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
         Else
-            Me.Height = 397
+            Me.Height = 373
         End If
     End Sub
 
@@ -178,7 +178,7 @@ Public Class frmTranslation
         If (globalData.vacuumMD5 <> MD5FileHash("apk/" & globalData.vacuumVersion)) Then
             MsgBox("Fehler beim Download, bitte Ordner apk/ leeren und erneut Versuchen.")
         ElseIf lblHomeExists.Visible Then
-            Me.Height = 397
+            Me.Height = 373
         End If
     End Sub
 
@@ -190,7 +190,7 @@ Public Class frmTranslation
         Else
             'Mi Home deinstallieren
             Dim oProcess3 As New Process()
-            Dim oStartInfo3 As New ProcessStartInfo("adb/adb.exe", "uninstall com.xiaomi.smarthome")
+            Dim oStartInfo3 As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "uninstall com.xiaomi.smarthome")
             oStartInfo3.UseShellExecute = False
             oStartInfo3.CreateNoWindow = True
             oProcess3.StartInfo = oStartInfo3
@@ -199,7 +199,7 @@ Public Class frmTranslation
 
             'Mi Home App installieren
             Dim oProcess As New Process()
-            Dim oStartInfo As New ProcessStartInfo("adb/adb.exe", "install -r apk/" & globalData.homeVersion)
+            Dim oStartInfo As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "install -r apk/" & globalData.homeVersion)
             oStartInfo.UseShellExecute = False
             oStartInfo.CreateNoWindow = True
             oProcess.StartInfo = oStartInfo
@@ -208,7 +208,7 @@ Public Class frmTranslation
 
             'Mi Home App starten
             Dim oProcess2 As New Process()
-            Dim oStartInfo2 As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
+            Dim oStartInfo2 As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
             oStartInfo2.UseShellExecute = False
             oStartInfo2.CreateNoWindow = True
             oProcess2.StartInfo = oStartInfo2
@@ -216,8 +216,7 @@ Public Class frmTranslation
             oProcess2.WaitForExit()
             'Video zeigen
             Process.Start("https://www.youtube.com/watch?v=BOUZ8J2NsM0")
-            Me.Enabled = False
-            Me.Height = 482
+            Me.Height = 460
         End If
     End Sub
 
@@ -225,14 +224,14 @@ Public Class frmTranslation
         If doBackup() < 20000000 Then
             MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
         Else
-            Me.Height = 566
+            Me.Height = 543
         End If
     End Sub
 
     Private Sub cmdExtract_Click(sender As Object, e As EventArgs) Handles cmdExtract.Click
         extractBackup()
 
-        Me.Height = 597
+        Me.Height = 574
     End Sub
 
     Private Sub cmdCopyTranslation_Click(sender As Object, e As EventArgs) Handles cmdCopyTranslation.Click
@@ -267,7 +266,7 @@ Public Class frmTranslation
         oProcess2.Start()
         oProcess2.WaitForExit()
 
-        Me.Height = 610
+        Me.Height = 612
     End Sub
 
     Private Sub cmdRestore_Click(sender As Object, e As EventArgs) Handles cmdRestore.Click
@@ -278,7 +277,7 @@ Public Class frmTranslation
         Else
             'MiHome Task killen
             Dim processStopApp As New Process()
-            Dim infoStopApp As New ProcessStartInfo("adb/adb.exe", "shell am force-stop com.xiaomi.smarthome")
+            Dim infoStopApp As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "shell am force-stop com.xiaomi.smarthome")
             infoStopApp.UseShellExecute = False
             infoStopApp.CreateNoWindow = True
             processStopApp.StartInfo = infoStopApp
@@ -289,7 +288,7 @@ Public Class frmTranslation
                 MsgBox("Als Passwort 123 eingeben!", MsgBoxStyle.Information)
             End If
             Dim processRestoreBackup As New Process()
-            Dim infoRestoreBackup As New ProcessStartInfo("adb/adb.exe", "restore save/newbackup.ab")
+            Dim infoRestoreBackup As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "restore save/newbackup.ab")
             infoRestoreBackup.UseShellExecute = False
             infoRestoreBackup.CreateNoWindow = True
             processRestoreBackup.StartInfo = infoRestoreBackup
@@ -297,7 +296,7 @@ Public Class frmTranslation
             processRestoreBackup.WaitForExit()
             'Mi Home App starten
             Dim processStartApp As New Process()
-            Dim infoStartApp As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
+            Dim infoStartApp As New ProcessStartInfo("adb/" & My.Settings.adb & "/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
             infoStartApp.UseShellExecute = False
             infoStartApp.CreateNoWindow = True
             processStartApp.StartInfo = infoStartApp
@@ -325,37 +324,6 @@ Public Class frmTranslation
             Process.Start("https://java.com/de/download/")
         ElseIf globalData.javaInfo <> "" Then
             MsgBox("Java gefunden: " & globalData.javaInfo)
-        End If
-    End Sub
-
-    Private Sub cmdGetToken_Click(sender As Object, e As EventArgs)
-        'Mi Home App starten
-        Dim oProcess2 As New Process()
-        Dim oStartInfo2 As New ProcessStartInfo("adb/adb.exe", "shell monkey -p com.xiaomi.smarthome -c android.intent.category.LAUNCHER 1")
-        oStartInfo2.UseShellExecute = False
-        oStartInfo2.CreateNoWindow = True
-        oProcess2.StartInfo = oStartInfo2
-        oProcess2.Start()
-        oProcess2.WaitForExit()
-        If doBackup() < 20000000 Then
-            MsgBox("Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein.")
-        Else
-            MsgBox("Backup erfolgreich, wird jetzt entpackt.")
-            extractBackup()
-            Dim connect As New SQLite.SQLiteConnection()
-            Dim command As SQLite.SQLiteCommand
-            connect.ConnectionString = "Data Source=apps/com.xiaomi.smarthome/db/miio2.db;"
-            connect.Open()
-            command = connect.CreateCommand
-            'command.CommandText = "SELECT name, token, model FROM devicerecord WHERE model = 'rockrobo.vacuum.v1'"
-            command.CommandText = "SELECT name, token, model FROM devicerecord"
-            Dim SQLreader As SQLite.SQLiteDataReader = command.ExecuteReader()
-            While SQLreader.Read()
-                showToken.tbToken.AppendText(SQLreader(2) & " - " & SQLreader(0) & " - " & SQLreader(1) & vbCrLf)
-                showToken.Show()
-            End While
-            command.Dispose()
-            connect.Close()
         End If
     End Sub
 
