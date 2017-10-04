@@ -136,16 +136,14 @@ Module modFunctions
         Dim strBackupEncrypted As String
         Dim strBackupNormal As String
         If frmTranslation.pbSchloss.Visible = True Then
-            If My.Settings.language = "de" Then
-                strBackupEncrypted = "Als Passwort 123 eingeben!"
-            ElseIf My.Settings.language = "en" Then
+            strBackupEncrypted = "Als Passwort 123 eingeben!"
+            If My.Settings.language = "en" Then
                 strBackupEncrypted = "Use 123 as password!"
             End If
             MsgBox(strBackupEncrypted, MsgBoxStyle.Information)
         Else
-            If My.Settings.language = "de" Then
-                strBackupNormal = "Bei der Sicherung KEIN Passwort vergeben!"
-            ElseIf My.Settings.language = "en" Then
+            strBackupNormal = "Bei der Sicherung KEIN Passwort vergeben!"
+            If My.Settings.language = "en" Then
                 strBackupNormal = "Don't set a password for the backup!"
             End If
             MsgBox(strBackupNormal)

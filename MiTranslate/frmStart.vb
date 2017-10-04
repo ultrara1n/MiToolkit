@@ -20,9 +20,8 @@ Public Class frmStart
 
     Private Sub frmStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Sprachflagge richtig setzen
-        If My.Settings.language = "de" Then
-            btnLanguage.Image = Global.MiToolkit.My.Resources.Resources.DE
-        ElseIf My.Settings.language = "en" Then
+        btnLanguage.Image = Global.MiToolkit.My.Resources.Resources.DE
+        If My.Settings.language = "en" Then
             btnLanguage.Image = Global.MiToolkit.My.Resources.Resources.US
         End If
 

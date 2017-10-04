@@ -14,17 +14,15 @@
         oProcess2.WaitForExit()
         If doBackup() < 20000000 Then
             Dim strBackupError As String
-            If My.Settings.language = "de" Then
-                strBackupError = "Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein."
-            ElseIf My.Settings.language = "en" Then
+            strBackupError = "Es scheint ein Fehler aufgetreten zu sein, das Backup ist viel zu klein."
+            If My.Settings.language = "en" Then
                 strBackupError = "There seems to be an error with the backup, it is way too small."
             End If
             MsgBox(strBackupError)
         Else
             Dim strBackupExtract As String
-            If My.Settings.language = "de" Then
-                strBackupExtract = "Backup erfolgreich, wird jetzt entpackt."
-            ElseIf My.Settings.language = "en" Then
+            strBackupExtract = "Backup erfolgreich, wird jetzt entpackt."
+            If My.Settings.language = "en" Then
                 strBackupExtract = "Backup successful, starting extraction."
             End If
             MsgBox(strBackupExtract)
