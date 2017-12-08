@@ -36,7 +36,7 @@
             command.CommandText = "SELECT name, token, model FROM devicerecord"
             Dim SQLreader As SQLite.SQLiteDataReader = command.ExecuteReader()
             While SQLreader.Read()
-                tbToken.AppendText(SQLreader(2) & " - " & SQLreader(0) & " - " & SQLreader(1) & vbCrLf)
+                tbToken.AppendText(SQLreader(2) & " - " & SQLreader(0) & " - " & SQLreader(1) & " - " & SQLreader(3) & vbCrLf)
             End While
             command.Dispose()
             connect.Close()

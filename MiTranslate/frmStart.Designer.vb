@@ -53,68 +53,68 @@ Partial Class frmStart
         '
         'StatusStrip1
         '
-        resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblContributors, Me.lblVersion, Me.ToolStripDropDownButton2, Me.btnLanguage})
+        resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.SizingGrip = False
         '
         'lblContributors
         '
-        resources.ApplyResources(Me.lblContributors, "lblContributors")
         Me.lblContributors.Name = "lblContributors"
+        resources.ApplyResources(Me.lblContributors, "lblContributors")
         '
         'lblVersion
         '
-        resources.ApplyResources(Me.lblVersion, "lblVersion")
         Me.lblVersion.Name = "lblVersion"
+        resources.ApplyResources(Me.lblVersion, "lblVersion")
         '
         'ToolStripDropDownButton2
         '
-        resources.ApplyResources(Me.ToolStripDropDownButton2, "ToolStripDropDownButton2")
         Me.ToolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripDropDownButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADBVersionToolStripMenuItem})
+        resources.ApplyResources(Me.ToolStripDropDownButton2, "ToolStripDropDownButton2")
         Me.ToolStripDropDownButton2.Name = "ToolStripDropDownButton2"
         '
         'ADBVersionToolStripMenuItem
         '
-        resources.ApplyResources(Me.ADBVersionToolStripMenuItem, "ADBVersionToolStripMenuItem")
         Me.ADBVersionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblADB32, Me.lblADB36, Me.lblADB39})
         Me.ADBVersionToolStripMenuItem.Name = "ADBVersionToolStripMenuItem"
+        resources.ApplyResources(Me.ADBVersionToolStripMenuItem, "ADBVersionToolStripMenuItem")
         '
         'lblADB32
         '
-        resources.ApplyResources(Me.lblADB32, "lblADB32")
         Me.lblADB32.Name = "lblADB32"
+        resources.ApplyResources(Me.lblADB32, "lblADB32")
         '
         'lblADB36
         '
-        resources.ApplyResources(Me.lblADB36, "lblADB36")
         Me.lblADB36.Name = "lblADB36"
+        resources.ApplyResources(Me.lblADB36, "lblADB36")
         '
         'lblADB39
         '
-        resources.ApplyResources(Me.lblADB39, "lblADB39")
         Me.lblADB39.Name = "lblADB39"
+        resources.ApplyResources(Me.lblADB39, "lblADB39")
         '
         'btnLanguage
         '
-        resources.ApplyResources(Me.btnLanguage, "btnLanguage")
         Me.btnLanguage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.btnLanguage.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnglischToolStripMenuItem, Me.DeutschToolStripMenuItem})
         Me.btnLanguage.Image = Global.MiToolkit.My.Resources.Resources.DE
+        resources.ApplyResources(Me.btnLanguage, "btnLanguage")
         Me.btnLanguage.Name = "btnLanguage"
         '
         'EnglischToolStripMenuItem
         '
-        resources.ApplyResources(Me.EnglischToolStripMenuItem, "EnglischToolStripMenuItem")
         Me.EnglischToolStripMenuItem.Image = Global.MiToolkit.My.Resources.Resources.US
         Me.EnglischToolStripMenuItem.Name = "EnglischToolStripMenuItem"
+        resources.ApplyResources(Me.EnglischToolStripMenuItem, "EnglischToolStripMenuItem")
         '
         'DeutschToolStripMenuItem
         '
-        resources.ApplyResources(Me.DeutschToolStripMenuItem, "DeutschToolStripMenuItem")
         Me.DeutschToolStripMenuItem.Image = Global.MiToolkit.My.Resources.Resources.DE
         Me.DeutschToolStripMenuItem.Name = "DeutschToolStripMenuItem"
+        resources.ApplyResources(Me.DeutschToolStripMenuItem, "DeutschToolStripMenuItem")
         '
         'frmStart
         '
