@@ -113,6 +113,8 @@ Public Class frmTranslation
     Private Sub cmdGetVersions_Click(sender As Object, e As EventArgs) Handles cmdGetVersions.Click
         Dim homeapp() As String
         Dim vacuum() As String
+        ServicePointManager.Expect100Continue = True
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
         Using client = New WebClient()
             Dim result() As String = Split(client.DownloadString("https://philippwensauer.com/mi/versions.txt?v=" & frmStart.lblVersion.Text), vbCrLf)
             homeapp = Split(result(0), ";")
